@@ -1,0 +1,72 @@
+[
+    {
+       "pk":1,
+       "model":"products.product",
+       "fields":{
+          "sku":"pp5001340155",
+          "name":"1966 Fender Telecaster, Sonic Blue",
+          "description":"Beautiful example of a player's grade vintage Telecaster. Rosewood fingerboard which has been refretted and is ready to play. Wear on neck is 100% natural. Professional refinish and relic job to match by Cardiff luthier Dave Dearnaley. Supplied with original hard case.",
+          "price":6000,
+          "category":6,
+          "rating":4.6,
+          "image_url":"",
+          "image":""
+       }
+    },
+    {
+        "pk":2,
+        "model":"products.product",
+        "fields":{
+           "sku":"pp5001600425",
+           "name":"C. 1955 Gibson LG1",
+           "description":"Rare Gibson example of this kind. Brought to the UK about seven years ago from a music store in White Rock, BC, Canada. A very well-worn, played and loved guitar. In good playing condition, sounding great but could be fully restored if desired.",
+           "price":2000,
+           "category":6,
+           "rating":4.6,
+           "image_url":"",
+           "image":""
+        }
+     },
+     {
+        "pk":3,
+        "model":"products.product",
+        "fields":{
+           "sku":"pp5001730010",
+           "name":"Fender Squier JV Stratocaster (1982-84), Sunburst",
+           "description":"Prime example of a player's grade JV Strat. ALl original with exception of the bridge and rear guard. Maple fingerboard. Plent of life left in the frets.",
+           "price":1250,
+           "category":6,
+           "rating":4.6,
+           "image_url":"",
+           "image":""
+        }
+     },
+     {
+        "pk":4,
+        "model":"products.product",
+        "fields":{
+           "sku":"pp5001890157",
+           "name":"1989 Takamine EN-10",
+           "description":"A lovely well-gigged acoustic dreadnought-shaped guitar with built-in pickup - a favorite amoungst sound engineers. Solid condtion all-around. Natural signs of age and us are all cosmetic.",
+           "price":800,
+           "category":6,
+           "rating":4.6,
+           "image_url":"",
+           "image":""
+        }
+     },
+     {
+        "pk":5,
+        "model":"products.product",
+        "fields":{
+           "sku":"pp5002111605",
+           "name":"1960s Gibson Discovered Tremolo Guitar Amp",
+           "description":"All original vintage Gibson Valve Amplifier. Fiteed with modern 1 x 12 Eminence Speaker. Sounds clean as can be with fully functional vibrato.",
+           "price":500,
+           "category":6,
+           "rating":4.6,
+           "image_url":"",
+           "image":""
+        }
+     }
+]

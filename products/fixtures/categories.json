@@ -1,0 +1,90 @@
+[
+    {
+        "pk":1,
+        "model":"products.category",
+        "fields":{
+           "name":"50s_60s_guitars",
+           "friendly_name":"50s and 60s Guitars"
+        }
+     },
+     {
+        "pk":2,
+        "model":"products.category",
+        "fields":{
+           "name":"70s_guitars",
+           "friendly_name":"70s Guitars"
+        }
+     },
+     {
+        "pk":3,
+        "model":"products.category",
+        "fields":{
+           "name":"80s_guitars",
+           "friendly_name":"80s Guitars"
+        }
+     },
+     {
+        "pk":4,
+        "model":"products.category",
+        "fields":{
+           "name":"60s_amps",
+           "friendly_name":"60s Amps"
+        }
+     },
+     {
+        "pk":5,
+        "model":"products.category",
+        "fields":{
+           "name":"70s_amps",
+           "friendly_name":"70s Amps"
+        }
+     },
+    {
+       "pk":6,
+       "model":"products.category",
+       "fields":{
+          "name":"deals",
+          "friendly_name":"Deals"
+       }
+    },
+    {
+        "pk":7,
+        "model":"products.category",
+        "fields":{
+           "name":"new_arrivals",
+           "friendly_name":"New Arrivals"
+        }
+     },
+     {
+        "pk":8,
+        "model":"products.category",
+        "fields":{
+           "name":"clearance",
+           "friendly_name":"Clearance"
+        }
+     },
+     {
+        "pk":9,
+        "model":"products.category",
+        "fields":{
+           "name":"60s_bass_guitars",
+           "friendly_name":"60s Bass Guitars"
+        }
+     },
+     {
+        "pk":10,
+        "model":"products.category",
+        "fields":{
+           "name":"70s_bass_guitars",
+           "friendly_name":"70s Bass Guitars"
+        }
+     },
+     {
+        "pk":11,
+        "model":"products.category",
+        "fields":{
+           "name":"80s_bass_guitars",
+           "friendly_name":"80s Bass Guitars"
+        }
+     },
+    ]
