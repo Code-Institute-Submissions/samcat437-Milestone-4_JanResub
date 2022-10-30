@@ -9,8 +9,8 @@
           "price":6000,
           "category":1,
           "rating":4.6,
-          "image_url":"",
-          "image":""
+          "image_url":"noimage.jpg",
+          "image":"noimage.jpg"
        }
     },
     {
@@ -23,8 +23,8 @@
            "price":2000,
            "category":1,
            "rating":4.6,
-           "image_url":"",
-           "image":""
+           "image_url":"noimage.jpg",
+           "image":"noimage.jpg"
         }
      },
      {
@@ -37,8 +37,8 @@
            "price":1250,
            "category":3,
            "rating":4.6,
-           "image_url":"",
-           "image":""
+           "image_url":"noimage.jpg",
+           "image":"noimage.jpg"
         }
      },
      {
@@ -51,8 +51,8 @@
            "price":800,
            "category":3,
            "rating":4.6,
-           "image_url":"",
-           "image":""
+           "image_url":"noimage.jpg",
+           "image":"noimage.jpg"
         }
      },
      {
@@ -65,8 +65,8 @@
            "price":500,
            "category":4,
            "rating":4.6,
-           "image_url":"",
-           "image":""
+           "image_url":"noimage.jpg",
+           "image":"noimage.jpg"
         }
      }
 ]
