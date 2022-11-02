@@ -48,12 +48,14 @@
                             <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
                         </small>
                     {% endif %}
-                    <a href="{% url 'wishlist' %}">
-                        <small class="ml-3">
-                            <span class="icon"><i class="fa-regular fa-heart"></i></span>Add to Wishlist</small>
-                        </small>
-                    </a>
-                    <!-- <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add to Wishlist"> -->
+                    <small class="ml-3">
+                        <form class="form" action="{% url 'add_to_wishlist' product.id %}" method="POST">
+                            {% csrf_token %}
+                            <span class="icon"><i class="fa-regular fa-heart"></i></span>
+                            <input type="submit" class="btn-wishlist" value="Add to Wishlist">
+                            <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                        </form>
+                    </small>
                     <p class="mt-3">{{ product.description }}</p>
                     <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
                         {% csrf_token %}
