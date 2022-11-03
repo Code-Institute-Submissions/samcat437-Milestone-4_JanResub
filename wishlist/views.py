@@ -6,25 +6,24 @@ from .models import Wishlist, WishlistItem
 
 from products.models import Product
 
+
 @login_required
 def wishlist(request):
     """ A view to show logged in user's wishlist """
-    
-    # wishlist_items = []
-    # wishlist = request.session.get('wishlist', {})
+     
+    items = []
+    user = get_object_or_404(UserProfile, user=request.user)
+    print(user)
+    wishlists = Wishlist.objects.filter(user=user)
+    print(wishlists)
+    for a in wishlists:
+        print(a.products)
 
-    # for item_id, item_data in wishlist.items():
-    #     product = get_object_or_404(Product, pk=item_id)
-    #     wishlist_items.append({
-    #         'item_id': item_id,
-    #         'product': product,
-    #     })
+    context = {
+        'wishlist_items': wishlists,
+    }
 
-    # context = {
-    #     'wishlist_items': wishlist_items,
-    # }
-
-    return render(request, 'wishlist/wishlist.html')
+    return render(request, 'wishlist/wishlist.html', context)
 
 
 @login_required
