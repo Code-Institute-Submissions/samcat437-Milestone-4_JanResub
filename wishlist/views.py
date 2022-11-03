@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from profiles.models import UserProfile
-from .models import Wishlist
+from .models import Wishlist, WishlistItem
 
 from products.models import Product
 
@@ -34,13 +34,14 @@ def add_to_wishlist(request, item_id):
     user = get_object_or_404(UserProfile, user=request.user)
     product = get_object_or_404(Product, pk=item_id)
     redirect_url = request.POST.get('redirect_url')
+    in_wishlist = WishlistItem.objects.filter(product=product).exists()
 
-    if item_id in list(wishlist.keys()):
-        messages.success(request, f'This product already exists in your wishlist.')
+    if in_wishlist:
+        messages.info(request, f'This product already exists in your wishlist.')
     else:
         user_wishlist = Wishlist.objects.create(user=user)
         user_wishlist.products.add(product)
-        user_wishlistt.save()
+        user_wishlist.save()
         messages.success(request, f'Added {product.name} to your wishlist')
 
     return redirect(redirect_url)
