@@ -8,7 +8,21 @@ View the live link here.
 
 ## User Stories
 
-View the project's users stories [here]()
+View the project's users stories: 
+
+[Admin and Store Management](https://github.com/samcat437/Milestone-4/blob/main/media/user_stories/Admin%20and%20Store%20Management.png)
+
+[Purchasing and Checkout](https://github.com/samcat437/Milestone-4/blob/main/media/user_stories/Admin%20and%20Store%20Management.png)
+
+[Registration and User Accounts](https://github.com/samcat437/Milestone-4/blob/main/media/user_stories/Registration%20and%20User%20Accounts.png)
+
+[Reviews](https://github.com/samcat437/Milestone-4/blob/main/media/user_stories/Reviews.png)
+
+[Sorting and Searching](https://github.com/samcat437/Milestone-4/blob/main/media/user_stories/Sorting%20and%20Searching.png)
+
+[Viewing and Navigation](https://github.com/samcat437/Milestone-4/blob/main/media/user_stories/Viewing%20and%20Navigation.png)
+
+[Wistlist](https://github.com/samcat437/Milestone-4/blob/main/media/user_stories/Wishlist.png)
 
 ## Features
 
