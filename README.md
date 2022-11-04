@@ -1,108 +1,171 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Vintage Sound Ecommerce Application
 
-Welcome samcat437,
+This application will user's to browse products, login and create a profile, add and delete them to their wishlist, shopping bag, checkout with Stripe, receive an email confirmation, write a review of the product and log out. Admin users are able to add, update and delete items on the website.
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+View the live link here. 
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+# User Experience
 
-## Gitpod Reminders
+## User Stories
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+View the project's users stories [here]()
 
-`python3 -m http.server`
+## Features
 
-A blue button should appear to click: _Make Public_,
+### Navbar and Footer
 
-Another blue button should appear to click: _Open Browser_.
+1. Navbar will be at the top of all pages on the desktop version once logged into the portal.
+2. Navbar on desktop will display all options. On mobile, once the hamburger is clicked, the navigation options will appear.
+3. Navbar will have the following options if logged in: 
+    * My Wedding
+    * Reviews
+    * Log out 
+3. Clicking on the relevant navigation option will redirect the user to that page.
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+4. Footer will be sticky. Navbar will be responsive and fill the entire width of small screens.
+ 
+ 
+### Home Page
 
-A blue button should appear to click: _Make Public_,
+1. The home page will welcome users to the store and have a useful navigation bar to access the site. 
+2. A large button will direct the user to the All Products page where they can quickly start browsing and making purchases.
 
-Another blue button should appear to click: _Open Browser_.
+### Nav Bar
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+## For Non-authenticated Users : 
 
-To log into the Heroku toolbelt CLI:
+1. The nav bar will provide links to all the products and sort them by category.
+2. Non-authenticated users will see a Login and Register button under 'My Account'.
+3. There will be a search bar (collapsable on mobile) for querying the store database.
+4. The shopping bag will display the shopping bag.
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+## For Authenticated Users : 
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+1. The My Account nav element will show Product Management, My Profile, My Wishlist, and Log out options.
 
-------
+### My Wishlist
 
-## Release History
+1. When a user clicks on a product, they will be able to click on the "add to wishlist" option.  
+2. They will receive a notification that they item has been added to their wishlist, or that the item is already in the wishlist. 
+3. They can then click on the link "View Wishlist" or click on "My Wishlist" in the navigation menu.
+4. Once navigating to their Wishlist, a user can view and delete the Wishlist as appropriate.
+5. The user can add the item directly to their bag.
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+### Reviews 
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+1. When clicking on a product, a user is able to view previously written review by other users.
+2. If the user has purchased the product, they will be able to write a review of the product.
+2. If the user is the author of the review, they will be able to edit or delete their review.
+3. The user is able to navigation to the "My Reviews" page in order to view, edit and delete their review in one place.
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+## Design
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+### Colour Scheme 
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+Purple and black are the main colors on the site that compliments the main image on the home page.
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+## Typography 
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+Audiowide font was sourced from Google Fonts to create a vintage, 80s look.
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+### Images 
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+The main image on the home page is [here](https://www.freepik.com/free-photo/closeup-man-playing-bass-guitar_21782474.htm#query=rock%20and%20roll%20male%20musician%20bass%20guitar&position=5&from_view=search&track=sph). Image is by pvproductions on Freepik.
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+## Wireframes 
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+### Technologies
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+## Languages Used
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+[HTML 5](https://en.wikipedia.org/wiki/HTML5) : HTML 5 was the main language used across the site.
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+[CSS 3](https://developer.mozilla.org/en-US/docs/Web/CSS) : CSS 3 was used to style the site.
 
-------
+[Javascript ES6](https://www.w3schools.com/js/js_es6.asp) : Javascript ES6 was used to operate Stripe payment processing. 
 
-## FAQ about the uptime script
+[Python3](https://www.python.org/) : Python3 was the main programming language used to create routes, models and logic in conjunction with Flask in order to render the site.
 
-**Why have you added this script?**
+[Jinja](https://flask.palletsprojects.com/en/2.1.x/) : Jinja is used to create templates to populate HTML pages on the site.
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+### Frameworks Used
 
-**How will this affect me?**
+[Bootstrap 4.6](https://getbootstrap.com/docs/4.6/getting-started/introduction//) : Bootstrap was used to structure the html pages.
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+[Django](https://www.djangoproject.com//) : Django is the high-level Python framework used to structure the application.
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+[Python3](https://www.python.org/) : Python is the programming language that the views, models, urls, admin and apps.py is written.
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+[Google Fonts](https://fonts.google.com/) : Google Fonts provided the font "Nanum Gothic" and "Gochi Hand" in order to customise and stylise the text. 
 
-**So….?**
+[Coolors](https://coolors.co/) : Coolors is a colour palette generator I used to create colours that worked together for the site.
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+[Git](https://git-scm.com/) : Git is the technology that hosts the Gitpod IDE and terminal where the project was coded. Git then committed and pushed the code to the cloud-based servers on GitHub.
+ 
+[GitHub](https://github.com/) : GitHub hosted the project on its servers after being pushed by Git.
 
-**Can I opt out?**
+[Balsamiq](https://balsamiq.com/) : Balsamiq was used to create and download wireframes for the project.
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+[Fontawesome](https://fontawesome.com/kits) : Font Awesome is a database of icons that can be used for visual interest.
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
+[Chrome Dev Tools](https://developer.chrome.com/docs/devtools/) : Chrome Dev tools were utilised for the Javascript console as well as to verify the site's responsiveness and visual presentation. 
 
-**Anything more?**
+### Bugs
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+## Testing 
 
----
+### Code Validation 
 
-Happy coding!
+The W3C Markup Validator, W3C CSS Validator, Jshint and Pep8 Services were used to check each page for syntax errors. 
+
+[W3C Markup Validator](https://validator.w3.org/)
+
+
+
+[W3C CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) 
+
+
+
+[Jshint](https://jshint.com/) 
+
+
+
+[Pep8online](http://pep8online.com/)
+
+
+## Manual Testing 
+
+Manual tests were conducted throughout the development process via the python terminal to understand the UX, routing and data population features.
+
+
+### Test Cases based on User Stories
+
+
+
+## Deployment 
+
+### Via Heroku 
+
+I used Heroku.com to host my app. This website ran the python code and produced a live link which can be found [here](). Heroku connects to GitHub and with every push updates the site on Heroku.
+
+1. In the gitpod terminal, a requirements.txt and a Procfile are first created by using the following commands:
+pip3 freeze –local > requirements.txt and echo web: python app.py > Procfile
+2. The new files are then committed to GitHub.
+3. In Heroku.com, a new account is created, followed by a new app. Europe is then chosen as the region nearest geographically for free service. Amazon Web Services were also chosen as the provider.
+4. Next, the Deployment Method of Connecting to GitHub is selected.
+Within the search bar, the repository name is entered and the correct repository (Milestone-4) is selected to connect via the button. Automatic deploys are enabled from the main branch.
+5. In the settings tab, the Config Vars information needs to be filled out very carefully. If these contain discrepencies, the app will not run. These included the following fields: DATABASE_URL, HEROKU_POSTGRESQL_RED_URL, IP, MONGO_DBNAME, MONGO_URI, PORT and SECRET_KEY. These fields correspond to the respective MongoDB, Heroku Postgresql add-on, Port and IP information as appropriate for your project. These are not disclosed her for security of the site.
+6. "Deploy Branch" was selected and the app is successfully built. 
+
+### Via Gitpod ran locally
+
+1. Navigate to the Github repository at [here]().
+2. Choose "Gitpod."
+3. In the Bash terminal, type: `python3 manage.py runserver`
+4. Choose "Make Public" when a blue button appears.
+5. Choose "Open Browser" when the options appears.
+
+### Acknowledgements
+
+Massive thanks to my Code Institute mentor for guiding me through the development process. Thank you to tutor support for being patient during tutoring sessions. 
