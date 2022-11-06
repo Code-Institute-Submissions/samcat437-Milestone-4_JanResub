@@ -6,7 +6,7 @@ class ReviewForm(forms.ModelForm):
 
     class Meta:
         model = Reviews
-        exclude = ('user',)
+        fields = '__all__'
 
     def __init__(self, *args, **kwargs):
         """ 
