@@ -110,7 +110,7 @@
                             <tr>
                                 <th></th>
                                 <th>Product</th>
-                                <th>Date Written</th>
+                                <th>Price</th>
                                 <th>Review</th>
                             </tr>
                         </thead>
@@ -137,6 +137,7 @@
                                 <td>
                                     <small class="ml-3">
                                         <a href="{% url 'edit_review' item.id %}">Edit</a> |
+                                        <a class="text-danger" href="{% url 'delete_review' item.id %}">Delete</a>
                                     </small>
                                 </td>
                             </tr>
