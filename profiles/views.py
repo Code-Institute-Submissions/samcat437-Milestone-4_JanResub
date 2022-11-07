@@ -2,7 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-from .models import UserProfile
+from profiles.models import UserProfile
+from reviews.models import Reviews
 from .forms import UserProfileForm
 
 from checkout.models import Order
@@ -12,6 +13,8 @@ from checkout.models import Order
 def profile(request):
     """ Display the user's profile. """
     profile = get_object_or_404(UserProfile, user=request.user)
+    user = get_object_or_404(UserProfile, user=request.user)
+    review = Reviews.objects.filter(user=user)
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)
@@ -28,7 +31,8 @@ def profile(request):
     context = {
         'form': form,
         'orders': orders,
-        'on_profile_page': True
+        'on_profile_page': True,
+        'review_items': review,
     }
 
     return render(request, template, context)

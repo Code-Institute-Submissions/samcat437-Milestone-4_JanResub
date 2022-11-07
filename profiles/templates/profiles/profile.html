@@ -115,20 +115,32 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {% for item in review_items %}
                             <tr>
-                                <td>
-                                    <img class="img-fluid rounded" src="" alt="image">
+                                <td class="p-3 w-25">
+                                    {% if item.product.image %}
+                                    <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                                    {% else %}
+                                    <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
+                                    {% endif %}
                                 </td>
                                 <td>
-                                    <p class="my-0"><strong>Name</strong></p>
+                                    <p class="my-0"><strong>{{ item.product.name }}</strong></p>
+                                    <p class="my-0 small text-muted">SKU: {{ item.product.sku|upper }}</p>
                                 </td>
                                 <td>
-                                    <p class="my-0 small text-muted">Date</p>
+                                    <p class="my-0">${{ item.product.price }}</p>
                                 </td>
                                 <td>
-                                    <p class="my-0">Review</p>
+                                    <p class="my-0">{{ item.review }}</p>
+                                </td>
+                                <td>
+                                    <small class="ml-3">
+                                        <a href="{% url 'edit_review' item.id %}">Edit</a> |
+                                    </small>
                                 </td>
                             </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
                 </div>

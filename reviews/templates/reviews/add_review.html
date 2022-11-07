@@ -19,42 +19,8 @@
                 <hr>
             </div>
         </div>
-
+        
         <div class="row">
-            <div class="col-12 col-lg-6 order-lg-last mb-5">
-                <p class="text-muted">Past Reviews</p>
-                <div class="row">
-                    <div class="col-7 offset-2">
-                        <p class="mb-1 mt-0 small text-muted">Item</p>
-                    </div>
-                    <div class="col-7 offset-2">
-                        <p class="mb-1 mt-0 small text-muted">Review</p>
-                    </div>
-                </div>
-                {% for item in review.product %}
-                    <div class="row">
-                        <div class="col-2 mb-1">
-                            <a href="{% url 'product_detail' item.product.id %}">
-                                {% if item.product.image %}
-                                    <img class="w-100" src="{{ item.product.image.url }}" alt="{{ product.name }}">
-                                {% else %}
-                                    <img class="w-100" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
-                                {% endif %}
-                            </a>
-                        </div>
-                        <div class="col-7">
-                            <p class="my-0"><strong>{{ item.product.name }}</strong></p>
-                            <p class="my-0 small text-muted">Qty: {{ item.quantity }}</p>
-                        </div>
-                        <div class="col-3 text-right">
-                            <p class="my-0 small text-muted">${{ item.product.price }}</p>
-                        </div>
-                        <div class="col-3 text-right">
-                            <p class="my-0 small text-muted">${{ item.product.review }}</p>
-                        </div>
-                    </div>
-                {% endfor %}                
-            </div>
             <div class="col-12 col-md-6">
                 <p class="text-muted">Please fill out the form below to submit your product review.</p>
                 <form method="POST" action="{% url 'add_review' %}" class="form mb-2" enctype="multipart/form-data">
@@ -71,7 +37,45 @@
                         <button class="btn btn-black rounded-0" type="submit">Add Review</button>
                     </div>
                 </form>
-            </div>            
+            </div>          
+            <div class="col-12 col-lg-6">
+                <p class="text-muted">Past Reviews</p>
+                {% if review_items %}
+                    <div class="table-responsive rounded">
+                        <table class="table table-sm table-borderless">
+                            <thead class="text-black">
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">Product</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Review</th>
+                                </tr>
+                            </thead>
+
+                            {% for item in review_items %}
+                                <tr>
+                                    <td class="p-3 w-25">
+                                        {% if item.product.image %}
+                                        <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                                        {% else %}
+                                        <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
+                                        {% endif %}
+                                    </td>
+                                    <td class="py-3">
+                                        <p class="my-0"><strong>{{ item.product.name }}</strong></p>
+                                        <p class="my-0 small text-muted">SKU: {{ item.product.sku|upper }}</p>
+                                    </td>
+                                    <td class="py-3">
+                                        <p class="my-0">${{ item.product.price }}</p>
+                                    </td>
+                                    <td class="py-3">
+                                        <p class="my-0">{{ item.review }}</p>
+                                    </td>
+                                </tr>
+                            {% endfor %} 
+                        {% endif %}             
+                    </div>
+            </div>
         </div>
     </div>
 {% endblock %}
