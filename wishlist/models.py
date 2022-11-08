@@ -6,6 +6,7 @@ from products.models import Product
 class Wishlist(models.Model):
     user = models.ForeignKey(UserProfile, null=False, blank=False, on_delete=models.CASCADE, related_name='wishlist')
     product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
+    name = models.CharField(max_length=254)
 
     def __str__(self):
-        return self.product
+        return self.name

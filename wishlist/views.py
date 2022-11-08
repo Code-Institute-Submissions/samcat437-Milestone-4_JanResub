@@ -10,7 +10,15 @@ from products.models import Product
 def wishlist(request):
     """ A view to return the wishlist page """
 
-    return render(request, 'wishlist/wishlist.html')
+    user = get_object_or_404(UserProfile, user=request.user)
+    wishlist = Wishlist.objects.filter(user=user)
+
+    template = 'wishlist/wishlist.html'
+    context = {
+        'wishlist_items': wishlist,
+    }
+    
+    return render(request, template, context)
 
 
 @login_required
@@ -27,9 +35,12 @@ def add_to_wishlist(request, item_id):
         messages.info(request, f'This product already exists in your wishlist.')
     else:
         if wishlist_exists:
+            print('wishlist exists')
             Wishlist.save(product)
+            print(product)
             messages.success(request, f'Added {product.name} to your wishlist')
         else:
+            print('no wishlist exists')
             user_wishlist = Wishlist.objects.create(product=product, user=user)
             Wishlist.save(product)
             messages.success(request, f'Added {product.name} to your wishlist')
