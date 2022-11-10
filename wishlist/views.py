@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from profiles.models import UserProfile
@@ -46,3 +46,14 @@ def add_to_wishlist(request, item_id):
             messages.success(request, f'Added {product.name} to your wishlist')
 
     return redirect(redirect_url)
+
+
+
+@login_required
+def delete_wishlist(request, item_id):
+    """ Delete a wishlist item from the wishlist """
+
+    wishlist = get_object_or_404(Wishlist, pk=item_id)
+    wishlist.delete()
+    messages.success(request, 'Item deleted from your wishlist!')
+    return redirect(reverse('wishlist'))

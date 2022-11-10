@@ -74,7 +74,7 @@
                         </tbody>
                     </table>
                 </div>
-                <p class="text-muted"><a href="{% url 'wishlist' %}">My Wishlist</a></p>
+                <p><a class="text-muted" href="{% url 'wishlist' %}">My Wishlist</a></p>
                 <div class="order-history table-responsive">
                     <table class="table table-sm table-borderless">
                         <thead>
@@ -86,24 +86,31 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {% for item in wishlist_items %}
                             <tr>
-                                <td>
-                                    <img class="img-fluid rounded" src="" alt="image">
+                                <td class="p-3 w-25">
+                                    {% if item.product.image %}
+                                    <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                                    {% else %}
+                                    <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
+                                    {% endif %}
                                 </td>
                                 <td>
-                                    <p class="my-0"><strong>Name</strong></p>
+                                    <p class="my-0"><strong>{{ item.product.name }}</strong></p>
+                                    <p class="my-0 small text-muted">SKU: {{ item.product.sku|upper }}</p>
                                 </td>
                                 <td>
                                     <p class="my-0 small text-muted">SKU:</p>
                                 </td>
                                 <td>
-                                    <p class="my-0">Price</p>
+                                    <p class="my-0">${{ item.product.price }}</p>
                                 </td>
                             </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
-                <p class="text-muted"><a href="{% url 'reviews' %}">My Reviews</a></p>
+                <p><a class="text-muted" href="{% url 'reviews' %}">My Reviews</a></p>
                 <div class="order-history table-responsive">
                     <table class="table table-sm table-borderless">
                         <thead>

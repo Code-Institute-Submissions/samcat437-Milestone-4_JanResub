@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 
 from profiles.models import UserProfile
 from reviews.models import Reviews
+from wishlist.models import Wishlist
 from .forms import UserProfileForm
 
 from checkout.models import Order
@@ -15,6 +16,7 @@ def profile(request):
     profile = get_object_or_404(UserProfile, user=request.user)
     user = get_object_or_404(UserProfile, user=request.user)
     review = Reviews.objects.filter(user=user)
+    wishlist = Wishlist.objects.filter(user=user)
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)
@@ -33,6 +35,7 @@ def profile(request):
         'orders': orders,
         'on_profile_page': True,
         'review_items': review,
+        'wishlist_items': wishlist
     }
 
     return render(request, template, context)
