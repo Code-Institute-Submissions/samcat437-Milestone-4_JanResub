@@ -61,12 +61,320 @@
         "fields":{
            "sku":"pp5002111605",
            "name":"1960s Gibson Discovered Tremolo Guitar Amp",
-           "description":"All original vintage Gibson Valve Amplifier. Fiteed with modern 1 x 12 Eminence Speaker. Sounds clean as can be with fully functional vibrato.",
+           "description":"All original vintage Gibson Valve Amplifier. Fitted with modern 1 x 12 Eminence Speaker. Sounds clean as can be with fully functional vibrato.",
            "price":500,
            "category":4,
            "rating":4.6,
            "image_url":"noimage.jpg",
            "image":"noimage.jpg"
         }
-     }
+     },
+     {
+      "pk":6,
+      "model":"products.product",
+      "fields":{
+         "sku":"pp5002111605",
+         "name":"1950s Fender Princeton",
+         "description":"This super rare 4 1/2 watt amp is the dream of any Fender Amp fan. In all original condition and ready for those vintage tones only a 1950s fender can offer",
+         "price":3000,
+         "category":4,
+         "rating":4.6,
+         "image_url":"noimage.jpg",
+         "image":"noimage.jpg"
+      }
+   },
+   {
+      "pk":7,
+      "model":"products.product",
+      "fields":{
+         "sku":"pp5002111605",
+         "name":"1950s Fender Champ",
+         "description":"The small but mighty Champ. Available here in all original condition. The best recording amp that money can buy.",
+         "price":2500,
+         "category":4,
+         "rating":4.6,
+         "image_url":"noimage.jpg",
+         "image":"noimage.jpg"
+      }
+   },
+   {
+      "pk":8,
+      "model":"products.product",
+      "fields":{
+         "sku":"pp5002111605",
+         "name":"1960s Hagstrom Acoustic",
+         "description":"This Swedish-made acoustic is based on the Gibson J45, and really punches above its weight. Hand made to perfection and offered in great players condition. Grab yourself a vintage acoustic without the huge pricetag!",
+         "price":500,
+         "category":1,
+         "rating":4.6,
+         "image_url":"noimage.jpg",
+         "image":"noimage.jpg"
+      }
+   },
+   {
+      "pk":9,
+      "model":"products.product",
+      "fields":{
+         "sku":"pp5002111605",
+         "name":"1960s Hofner Violin Bass",
+         "description":"Collectors grade example of this iconic guitar made famous by Paul McCartney of the Beatles. In all original condition, set up and ready to play.",
+         "price":2000,
+         "category":9,
+         "rating":4.6,
+         "image_url":"noimage.jpg",
+         "image":"noimage.jpg"
+      }
+   },
+   {
+      "pk":10,
+      "model":"products.product",
+      "fields":{
+         "sku":"pp5002111605",
+         "name":"1960s Selmer Zodiac Twin 30",
+         "description":"Beast of a vintage amp. Fully restored as close as possible to the  original. Complete with crocodile skin tolex and magic eye! Beautiful tremolo system unique to this amp. In full working order.",
+         "price":900,
+         "category":5,
+         "rating":4.6,
+         "image_url":"noimage.jpg",
+         "image":"noimage.jpg"
+      }
+   },
+   {
+      "pk":11,
+      "model":"products.product",
+      "fields":{
+         "sku":"pp5002111605",
+         "name":"1960 Wandre Tri Lam960s Selmer Zodiac Twin 30",
+         "description":"Possibly the weirdest guitar we have in the store! Unusual design featuring a plastic body and metal neck. Not the most comfortable guitar to play but more something to hang on the wall and marvel at. In all original collector grade condition.",
+         "price":2500,
+         "category":1,
+         "rating":4.6,
+         "image_url":"noimage.jpg",
+         "image":"noimage.jpg"
+      }
+   },
+   {
+      "pk":12,
+      "model":"products.product",
+      "fields":{
+         "sku":"pp5002111605",
+         "name":"1960s Yamaha FG-180",
+         "description":"The legendary Yamaha FG-180 red label. Spruce top and rosewood back and sides. This guitar has been well played over the years and bears the marks to show. Tones like none other.",
+         "price":300,
+         "category":1,
+         "rating":4.6,
+         "image_url":"noimage.jpg",
+         "image":"noimage.jpg"
+      }
+   },
+   {
+      "pk":13,
+      "model":"products.product",
+      "fields":{
+         "sku":"pp5002111605",
+         "name":"1966 Fender Telecaster",
+         "description":"Sunburst. Showroom example of this iconic guitar. Ash body and rosewood veneer fingerboard. All original everything. Hardly ever played.",
+         "price":6000,
+         "category":1,
+         "rating":4.6,
+         "image_url":"noimage.jpg",
+         "image":"noimage.jpg"
+      }
+   },
+   {
+      "pk":14,
+      "model":"products.product",
+      "fields":{
+         "sku":"pp5002111605",
+         "name":"1971 Fender Vibro Champ",
+         "description":"Possibly the best sounding amp ever. More reliable than its 50s and 60s counterparts. Unusual model with built in tremolo. Sounds a dream. In all original condition with original footswitch.",
+         "price":1000,
+         "category":5,
+         "rating":4.6,
+         "image_url":"noimage.jpg",
+         "image":"noimage.jpg"
+      }
+   },
+   {
+      "pk":15,
+      "model":"products.product",
+      "fields":{
+         "sku":"pp5002111605",
+         "name":"1971 Marshall JTM45",
+         "description":"The icon of the British rock sound. In all original condition. Serviced with a new set of valves and ready to rock.",
+         "price":4000,
+         "category":5,
+         "rating":4.6,
+         "image_url":"noimage.jpg",
+         "image":"noimage.jpg"
+      }
+   },
+   {
+      "pk":16,
+      "model":"products.product",
+      "fields":{
+         "sku":"pp5002111605",
+         "name":"1973 Fender Telecaster",
+         "description":"Natural. This players grade guitar has had lots of modifications over the years but still plays great. If originality is not for you this is your guitar. Original finish stripped away and varnished. Routed in the bridge postion for a humbucker, now fitted with single coil seymor-duncan pickup.",
+         "price":2000,
+         "category":2,
+         "rating":4.6,
+         "image_url":"noimage.jpg",
+         "image":"noimage.jpg"
+      }
+   },
+   {
+      "pk":17,
+      "model":"products.product",
+      "fields":{
+         "sku":"pp5002111605",
+         "name":"1974 Fender Telecaster",
+         "description":"Olympic White. Offered in all original condition. Original finish has nicely aged from olympic white into a butterscotch blonde. An effect only time can have. Lovely guitar with Ash body and Maple fingerboard.",
+         "price":2000,
+         "category":2,
+         "rating":4.6,
+         "image_url":"noimage.jpg",
+         "image":"noimage.jpg"
+      }
+   },
+   {
+      "pk":18,
+      "model":"products.product",
+      "fields":{
+         "sku":"pp5002111605",
+         "name":"1974 Fender Stratocaster",
+         "description": "Olympic White. Offered in all original condition. Original finish has nicely aged from olympic white into a butterscotch blonde. An effect only time can have. Lovely guitar with Ash body and Maple fingerboard.",
+         "price":2000,
+         "category":2,
+         "rating":4.6,
+         "image_url":"noimage.jpg",
+         "image":"noimage.jpg"
+      }
+   },
+   {
+      "pk":19,
+      "model":"products.product",
+      "fields":{
+         "sku":"pp5002111605",
+         "name":"1977 Fender Precision Bass",
+         "description": "Lake Placid Blue. In all original condition. Near collectors grade. Only minor cosmetic marks in the finish. Set up professionally and ready to play.",
+         "price":2200,
+         "category":10,
+         "rating":4.6,
+         "image_url":"noimage.jpg",
+         "image":"noimage.jpg"
+      }
+   },
+   {
+      "pk":20,
+      "model":"products.product",
+      "fields":{
+         "sku":"pp5002111605",
+         "name":"1980s Gibson Les Paul Studio",
+         "description": "Natural. Sound like Bob Marley with this versatile guitar. In great condition all round, set up nicely and ready to play.",
+         "price":990,
+         "category":3,
+         "rating":4.6,
+         "image_url":"noimage.jpg",
+         "image":"noimage.jpg"
+      }
+   },
+   {
+      "pk":20,
+      "model":"products.product",
+      "fields":{
+         "sku":"pp5002111605",
+         "name":"1980s Tokai Les Paul",
+         "description": "Black. The japaneses answer to the Gibson Les Paul. Unparalleled build quality, all original and in great condition. Set up and ready to play.",
+         "price":850,
+         "category":3,
+         "rating":4.6,
+         "image_url":"noimage.jpg",
+         "image":"noimage.jpg"
+      }
+   },
+   {
+      "pk":20,
+      "model":"products.product",
+      "fields":{
+         "sku":"pp5002111605",
+         "name":"1983 Fender Squier JV Presicion Bass",
+         "description": "The legendary Squier JV in all original collectors grade condition. Build from American parts in Fender Japan's new facory. These guitars are loved by musicians and collectors alike.",
+         "price":1200,
+         "category":11,
+         "rating":4.6,
+         "image_url":"noimage.jpg",
+         "image":"noimage.jpg"
+      }
+   },
+   {
+      "pk":20,
+      "model":"products.product",
+      "fields":{
+         "sku":"pp5002111605",
+         "name":"1983 Fender Squier JV Stratocaster",
+         "description": "The legendary Squier JV (Japanese Vintage) in all original collectors grade condition. Build from American parts in Fender Japans new factory. These guitars are loved by musicians and collectors alike.",
+         "price":1200,
+         "category":3,
+         "rating":4.6,
+         "image_url":"noimage.jpg",
+         "image":"noimage.jpg"
+      }
+   },
+   {
+      "pk":20,
+      "model":"products.product",
+      "fields":{
+         "sku":"pp5002111605",
+         "name":"2000s Epiphone Les Paul",
+         "description": "Old Black. This heavily modified Korean-made Les Paul Gold Top has been heavily modified to look and sound like Neil Youngs iconic Old Black. Featuring genuine bigsby, nickel plated P90 pickup cover, firebird mini humbucker in the bridge postion and custom made metal pick guard. Custom paint job and relic to match.",
+         "price":650,
+         "category":7,
+         "rating":4.6,
+         "image_url":"noimage.jpg",
+         "image":"noimage.jpg"
+      }
+   },
+   {
+      "pk":20,
+      "model":"products.product",
+      "fields":{
+         "sku":"pp5002111605",
+         "name":"2000s Gibson ES335",
+         "description": "Cherry red. Play like Chuck Berry with this mint condition Gibson ES335. Professionally set up and ready to rock and roll.",
+         "price":1600,
+         "category":7,
+         "rating":4.6,
+         "image_url":"noimage.jpg",
+         "image":"noimage.jpg"
+      }
+   },
+   {
+      "pk":20,
+      "model":"products.product",
+      "fields":{
+         "sku":"pp5002111605",
+         "name":"2003 Ibanez Prestige",
+         "description": "Amazing example of this super strat. Paint job like no other. Set up with 9s as it should be. Low action, fast neck.",
+         "price":900,
+         "category":7,
+         "rating":4.6,
+         "image_url":"noimage.jpg",
+         "image":"noimage.jpg"
+      }
+   },
+   {
+      "pk":20,
+      "model":"products.product",
+      "fields":{
+         "sku":"pp5002111605",
+         "name":"2000s Fender Telecaster MIM",
+         "description": "Olympic White. Solid guitar for those who may not want to splash out on the American counterpart. Great pickups, great playability and great sound. Offered in mint condition.",
+         "price":400,
+         "category":7,
+         "rating":4.6,
+         "image_url":"noimage.jpg",
+         "image":"noimage.jpg"
+      }
+   }
 ]

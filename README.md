@@ -8,7 +8,48 @@ View the live link here.
 
 ## User Stories
 
-View the project's users stories: 
+| User Story ID  | As a/an  | I want to be able to...  | So that I can... |
+|---|---|---|---|
+| Viewing Products & Navigation |
+|   | User/Shopper | View a list of products | Select it for purchase. |
+|   |   | View individual product details | Identify the price and description of the item. |
+|   |   | Easily view the total of my purchases at any time | Ensure that the total is correct. |
+|   |   | View a specific category of products | Quickly find products I’m interested in without having to search through all the products. |
+| Sorting and Searching |
+|   | User/Shopper | Sort the list of available products | kEasily identify the products by type. |
+|   |   | Sort a specific category of product | Find the product by year or era. |
+|   |   | Search a product by name or description | Find a specific product I’d like to purchase. |
+|   |   | Easily see what I’ve searched for and the number of results | Quickly see if the product I want is available. |
+| Purchasing and Checkout |
+|   | User/Shopper | search for specific products | find products I am interested in buying. |
+|   |   | easily understand the search results | quickly decide which product I want to buy. |
+|   |   | sort by price, name, category and rating  | view a wide range and choose which to buy. |
+| Checkout  |
+| | Shopper | View items in my bag to be purchased | Identify the total cost of my purchase and all items I will receive. |
+|   |   | Adjust items in my bag to be purchased | Easily make changes to my purchase before checkout. |
+|   |   | Enter payment information | Check out quickly with no hassles. |
+|   |   | Feel that my personal and financial information is safe and secure | Confidently provide the needed information to make a purchase. |
+|   |   | View an order confirmation after checkout | Keep this confirmation for my records. |
+| Admin and Store Management  |
+|   | Store owner/Admin | Add a product | Add new items to my store  |
+|   |   | Edit and update a product | Change product prices, description, images and other product criteria |
+|   |   | Delete a product | Remove items that are not for sale. |
+| Reviews  |
+|   | User | Add a review (Create) | Comment on the item so that other shoppers can receive feedback regarding the item / ask questions to the store owner  |
+|   |   | Read the review | View the comment on the item |
+|   |   | Update the review | Change the content of the comment if author. |
+|   |   | Delete review | Delete the review if desired and if author. |
+| Registration and User Accounts  |
+|   | User | Easily register for an account | Have a personal account and be able to view profile.  |
+|   |   | Easily login or logout | Access personal account information. |
+|   |   | Easily recover password | Recover access to account. |
+|   |   | Receive email confirmation after registering | Verify account registration was successful. |
+| Wishlist  |
+|   | User | Select a product to add to Wishlist (Create) | Click the button to add to Wishlist  |
+|   |   | View the Wishlist in the profile (read)| Save the product to a list in the product description and within profile |
+|   |   | Remove the item from Wishlist (Edit/delete) | Change the wish list as desired. |
+
+View the project's users stories on Github: 
 
 [Admin and Store Management](https://github.com/samcat437/Milestone-4/blob/main/media/user_stories/Admin%20and%20Store%20Management.png)
 
@@ -31,12 +72,17 @@ View the project's users stories:
 1. Navbar will be at the top of all pages on the desktop version once logged into the portal.
 2. Navbar on desktop will display all options. On mobile, once the hamburger is clicked, the navigation options will appear.
 3. Navbar will have the following options if logged in: 
-    * My Wedding
-    * Reviews
+    * My Profile
+    * My Wishlist
+    * My Reviews
     * Log out 
-3. Clicking on the relevant navigation option will redirect the user to that page.
+4. If user is a superuser, they will also have the Project Management option.
+5. If user is not logged in, they will only have two options: 
+    * Register
+    * Login
+6. Clicking on the relevant navigation option will redirect the user to that page.
 
-4. Footer will be sticky. Navbar will be responsive and fill the entire width of small screens.
+7. Footer will be sticky. Navbar will be responsive and fill the entire width of small screens.
  
  
 ### Home Page
@@ -44,7 +90,7 @@ View the project's users stories:
 1. The home page will welcome users to the store and have a useful navigation bar to access the site. 
 2. A large button will direct the user to the All Products page where they can quickly start browsing and making purchases.
 
-### Nav Bar
+## Navbar
 
 ## For Non-authenticated Users : 
 
@@ -55,7 +101,7 @@ View the project's users stories:
 
 ## For Authenticated Users : 
 
-1. The My Account nav element will show Product Management, My Profile, My Wishlist, and Log out options.
+1. The My Account nav element will show Product Management, My Profile, My Wishlist, My Reviews, and Log out options.
 
 ### My Wishlist
 
@@ -113,8 +159,6 @@ The main image on the home page is [here](https://www.freepik.com/free-photo/clo
 
 [Google Fonts](https://fonts.google.com/) : Google Fonts provided the font "Nanum Gothic" and "Gochi Hand" in order to customise and stylise the text. 
 
-[Coolors](https://coolors.co/) : Coolors is a colour palette generator I used to create colours that worked together for the site.
-
 [Git](https://git-scm.com/) : Git is the technology that hosts the Gitpod IDE and terminal where the project was coded. Git then committed and pushed the code to the cloud-based servers on GitHub.
  
 [GitHub](https://github.com/) : GitHub hosted the project on its servers after being pushed by Git.
@@ -161,16 +205,75 @@ Manual tests were conducted throughout the development process via the python te
 
 ### Via Heroku 
 
-I used Heroku.com to host my app. This website ran the python code and produced a live link which can be found [here](). Heroku connects to GitHub and with every push updates the site on Heroku.
+I used Heroku.com to host my app. This website ran the python code and produced a live link which can be found [here](https://milestone-4-vintage-sound.herokuapp.com/). Heroku connects to GitHub and with every push updates the site on Heroku.
 
-1. In the gitpod terminal, a requirements.txt and a Procfile are first created by using the following commands:
-pip3 freeze –local > requirements.txt and echo web: python app.py > Procfile
-2. The new files are then committed to GitHub.
-3. In Heroku.com, a new account is created, followed by a new app. Europe is then chosen as the region nearest geographically for free service. Amazon Web Services were also chosen as the provider.
-4. Next, the Deployment Method of Connecting to GitHub is selected.
-Within the search bar, the repository name is entered and the correct repository (Milestone-4) is selected to connect via the button. Automatic deploys are enabled from the main branch.
-5. In the settings tab, the Config Vars information needs to be filled out very carefully. If these contain discrepencies, the app will not run. These included the following fields: DATABASE_URL, HEROKU_POSTGRESQL_RED_URL, IP, MONGO_DBNAME, MONGO_URI, PORT and SECRET_KEY. These fields correspond to the respective MongoDB, Heroku Postgresql add-on, Port and IP information as appropriate for your project. These are not disclosed her for security of the site.
-6. "Deploy Branch" was selected and the app is successfully built. 
+1. Log in to Heroku and create a new app by clicking "New" and "Create New App", naming and setting the region to closest to your location.
+2. Click on Heroku Resources and add Postgres using the free plan.
+3. In the IDE, create or update a requirements.txt file using command pip3 freeze > requirements.txt
+4. Create a Procfile with the terminal command web: gunicorn vintage_sound.wsgi:application. Be sure there is no blank line at the end.
+5. Use the loaddata command to load the fixtures for both json files: python3 manage.py loaddata categories.json and python3 manage.py loaddata products.json
+6. If it returns error message: django.db.utils.OperationalError: FATAL: role does not exist run unset PGHOSTADDR in your terminal and run the commands in step 10 again.
+7. From the CLI, login to Heroku using command heroku login -i.
+8. Temporarily disable Collectstatic by running: heroku:config:set DISABLE_COLLECTSTATIC=1 --app So that Heroku won't try to collect static files when we deploy.
+9. Add Heroku app name to ALLOWED_HOSTS in settings.py.
+10. Commit changes to GitHub using git add ., git commit -m , git push. Deploy to Heroku using git push heroku main. If the git remote isn't initialised you may have to do that first by running *heroku git:remote -a
+and create a superuser using command: heroku run python3 manage.py createsuperuser so that you can login to admin as required.
+11. From Heroku dashboard click "Deploy" -> "Deployment Method" and select "GitHub".
+12. Search for your GitHub repo and connect then Enable Automatic Deploys.
+13. Generate secret key. Strong secret keys can be obtained from MiniWebTool. This automatically generates a secret key 50 characters long with alphanumeric characters and symbols.
+14. Add secret key to GitPod variables and Heroku config vars.
+15. Set up Amazon AWS S3 bucket.
+16. In the dashboard click "Settings" -> "Reveal Config Vars"
+17. Set config vars using advice below.
+
+#### **Amazon AWS**
+
+1. Create Amazon AWS account and create a new bucket in the S3 services and choose your closest region.
+2. Uncheck block all public access and create bucket. 
+3. From the Properties tab turn on static website hosting using default values of index.html and errors.html.
+4. On permissions tab include CORS configuration:
+```python
+[
+  {
+      "AllowedHeaders": [
+          "Authorization"
+      ],
+      "AllowedMethods": [
+          "GET"
+      ],
+      "AllowedOrigins": [
+          "*"
+      ],
+      "ExposeHeaders": []
+  }
+]
+```
+5. Create security policy: S3 Bucket Policy, allow all principles by adding a * and Amazon S3 services and selecting Get Object action. Paste ARN from Bucket Policy, add statement, generate policy and copy and paste into Bucket Policy. Also add /* at end of resource key to allow use of all pages. 
+6. Under public access select access to all List Objects. 
+7. Create Group for the bucket through IAM. Create policy by importing AWS S3 Full Access policy and add ARN from bucket to the policy resources. Attach policy to group. 
+8. Create user, give programmatic access and add user to the group. Download CSV file when prompted to save access key ID an secret access key to save to environment and config [variables](#config-vars).
+9. Add AWS_STORAGE_BUCKET_NAME, AWS_S3_REGION_NAME = 'eu-west-2' to settings.py.
+10. Add, commit and push to GitHub then navigate to Heroku to confirm static files collected successfully on the Build Log. The DISABLE_COLLECTSTATIC variable can now be deleted. 
+
+### **Config Vars**
+
+The config/environment variables should be set up as follows:
+
+| Key                    | Value                      |
+| ---------------------- |--------------------------- |
+| PORT                   | 8000                       |
+| IP                     | 0.0.0.0                    |
+| SECRET_KEY             | YOUR_SECRET_KEY            |
+| STRIPE_PUBLIC_KEY      | STRIPE_PUBLIC_KEY          |
+| STRIPE_SECRET_KEY      | YOUR_STRIPE_SECRET_KEY     |
+| STRIPE_WH_SECRET       | STRIPE_WEBHOOKS_KEY        |
+| DATABASE_URL           | YOUR_POSTGRES_URL          |
+| AWS_ACCESS_KEY_ID      | YOUR_AWS_ACCESS_KEY_ID     |
+| AWS_SECRET_ACCESS_KEY  | YOUR_AWS_SECRET_ACCESS_KEY |   
+| USE_AWS                | True                       |
+| EMAIL_HOST_PASS        | YOUR_EMAIL_HOST_PASSCODE   |
+| EMAIL_HOST_USER        | YOUR_EMAIL_HOST_USERNAME   |
+
 
 ### Via Gitpod ran locally
 
