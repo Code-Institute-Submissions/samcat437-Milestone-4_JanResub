@@ -80,7 +80,7 @@
          "category":4,
          "rating":4.6,
          "image_url":"noimage.jpg",
-         "image":"noimage.jpg"
+         "image":"1950s-fender-princton.jpg"
       }
    },
    {
@@ -94,7 +94,7 @@
          "category":4,
          "rating":4.6,
          "image_url":"noimage.jpg",
-         "image":"noimage.jpg"
+         "image":"1950s-fender-champ.jpg"
       }
    },
    {
@@ -108,7 +108,7 @@
          "category":1,
          "rating":4.6,
          "image_url":"noimage.jpg",
-         "image":"noimage.jpg"
+         "image":"1960s-hagstrom.jpg"
       }
    },
    {
@@ -122,7 +122,7 @@
          "category":9,
          "rating":4.6,
          "image_url":"noimage.jpg",
-         "image":"noimage.jpg"
+         "image":"1960s-hofner-violin-bass.jpg"
       }
    },
    {
@@ -136,7 +136,7 @@
          "category":5,
          "rating":4.6,
          "image_url":"noimage.jpg",
-         "image":"noimage.jpg"
+         "image":"1960s-selmer-zodiac-twin-30.jpg"
       }
    },
    {
@@ -144,13 +144,13 @@
       "model":"products.product",
       "fields":{
          "sku":"pp5002111605",
-         "name":"1960 Wandre Tri Lam960s Selmer Zodiac Twin 30",
+         "name":"1960 Wandre Tri Lam",
          "description":"Possibly the weirdest guitar we have in the store! Unusual design featuring a plastic body and metal neck. Not the most comfortable guitar to play but more something to hang on the wall and marvel at. In all original collector grade condition.",
          "price":2500,
          "category":1,
          "rating":4.6,
          "image_url":"noimage.jpg",
-         "image":"noimage.jpg"
+         "image":"1960-wandre-tri-lam.jpg"
       }
    },
    {
@@ -164,7 +164,7 @@
          "category":1,
          "rating":4.6,
          "image_url":"noimage.jpg",
-         "image":"noimage.jpg"
+         "image":"1960s-yahama-fg-180.jpg"
       }
    },
    {
@@ -178,7 +178,7 @@
          "category":1,
          "rating":4.6,
          "image_url":"noimage.jpg",
-         "image":"noimage.jpg"
+         "image":"1966-fender-telecaster.jpg"
       }
    },
    {
@@ -192,7 +192,7 @@
          "category":5,
          "rating":4.6,
          "image_url":"noimage.jpg",
-         "image":"noimage.jpg"
+         "image":"1971-fender-vibro-champ.jpg"
       }
    },
    {
@@ -206,7 +206,7 @@
          "category":5,
          "rating":4.6,
          "image_url":"noimage.jpg",
-         "image":"noimage.jpg"
+         "image":"1971-marshall-jtm45.jpg"
       }
    },
    {
@@ -220,7 +220,7 @@
          "category":2,
          "rating":4.6,
          "image_url":"noimage.jpg",
-         "image":"noimage.jpg"
+         "image":"1973-fender-telecaster.jpg"
       }
    },
    {
@@ -234,7 +234,7 @@
          "category":2,
          "rating":4.6,
          "image_url":"noimage.jpg",
-         "image":"noimage.jpg"
+         "image":"1974-fender-telecaster.jpg"
       }
    },
    {
@@ -242,13 +242,13 @@
       "model":"products.product",
       "fields":{
          "sku":"pp5002111605",
-         "name":"1974 Fender Stratocaster",
-         "description": "Olympic White. Offered in all original condition. Original finish has nicely aged from olympic white into a butterscotch blonde. An effect only time can have. Lovely guitar with Ash body and Maple fingerboard.",
+         "name":"1960s Hofner Verythin",
+         "description": "Brilliant collectors condition example of a Hofner Verythin. Rare example featuring three pickups, rather than the usual two. Not known for their playability, but it really does look great.",
          "price":2000,
          "category":2,
          "rating":4.6,
          "image_url":"noimage.jpg",
-         "image":"noimage.jpg"
+         "image":"1960s-hofner-verythin.jpg"
       }
    },
    {
@@ -262,7 +262,7 @@
          "category":10,
          "rating":4.6,
          "image_url":"noimage.jpg",
-         "image":"noimage.jpg"
+         "image":"1977-fender-presicion-bass.jpg"
       }
    },
    {
@@ -276,7 +276,7 @@
          "category":3,
          "rating":4.6,
          "image_url":"noimage.jpg",
-         "image":"noimage.jpg"
+         "image":"1980s-gibson-les-paul-studio.jpg"
       }
    },
    {
@@ -290,7 +290,7 @@
          "category":3,
          "rating":4.6,
          "image_url":"noimage.jpg",
-         "image":"noimage.jpg"
+         "image":"1980s-tokai-les-paul.jpg"
       }
    },
    {
@@ -298,13 +298,13 @@
       "model":"products.product",
       "fields":{
          "sku":"pp5002111605",
-         "name":"1983 Fender Squier JV Presicion Bass",
+         "name":"1987 Fender Squier JV Presicion Bass",
          "description": "The legendary Squier JV in all original collectors grade condition. Build from American parts in Fender Japan's new facory. These guitars are loved by musicians and collectors alike.",
          "price":1200,
          "category":11,
          "rating":4.6,
          "image_url":"noimage.jpg",
-         "image":"noimage.jpg"
+         "image":"1987-fender-squier-jv.jpg"
       }
    },
    {
@@ -318,7 +318,7 @@
          "category":3,
          "rating":4.6,
          "image_url":"noimage.jpg",
-         "image":"noimage.jpg"
+         "image":"1983-fender-squier-jv-stat.jpg"
       }
    },
    {
@@ -332,7 +332,7 @@
          "category":7,
          "rating":4.6,
          "image_url":"noimage.jpg",
-         "image":"noimage.jpg"
+         "image":"2000s-epiphone-les-paul.jpg"
       }
    },
    {
@@ -346,7 +346,7 @@
          "category":7,
          "rating":4.6,
          "image_url":"noimage.jpg",
-         "image":"noimage.jpg"
+         "image":"2000s-gibson.jpg"
       }
    },
    {
@@ -360,7 +360,7 @@
          "category":7,
          "rating":4.6,
          "image_url":"noimage.jpg",
-         "image":"noimage.jpg"
+         "image":"2003-ibanez-prestige.jpg"
       }
    },
    {
@@ -374,7 +374,21 @@
          "category":7,
          "rating":4.6,
          "image_url":"noimage.jpg",
-         "image":"noimage.jpg"
+         "image":"2000s-fender-telecaster-MIM.jpg"
+      }
+   },
+   {
+      "pk":21,
+      "model":"products.product",
+      "fields":{
+         "sku":"pp5002111605",
+         "name":"1973 Fender Telecaster",
+         "description": "Natural. This players grade guitar has had lots of modifications over the years but still plays great. If originality is not for you this is your guitar. Original finish stripped away and varnished. Routed in the bridge postion for a humbucker, now fitted with single coil seymor-duncan pickup.",
+         "price":3000,
+         "category":2,
+         "rating":4.6,
+         "image_url": "noimage.jpg",
+         "image":"1973-fender-telecaster-white.jpg"
       }
    }
 ]
