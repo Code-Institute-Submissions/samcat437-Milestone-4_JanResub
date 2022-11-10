@@ -1,1 +1,1 @@
-web: gunicorn vintage-sound.wsgi:application
+web: gunicorn vintage_sound.wsgi:application
