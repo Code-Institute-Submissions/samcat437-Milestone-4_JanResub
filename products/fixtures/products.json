@@ -93,7 +93,7 @@
          "price":2500,
          "category":4,
          "rating":4.6,
-         "image_url":"noimage.jpg",
+         "image_url":"https://milestone-4-vintage-sound.s3.eu-west-2.amazonaws.com/media/1950s-fender-champ.JPG",
          "image":"1950s-fender-champ.jpg"
       }
    },
@@ -133,7 +133,7 @@
          "name":"1960s Selmer Zodiac Twin 30",
          "description":"Beast of a vintage amp. Fully restored as close as possible to the  original. Complete with crocodile skin tolex and magic eye! Beautiful tremolo system unique to this amp. In full working order.",
          "price":900,
-         "category":5,
+         "category":4,
          "rating":4.6,
          "image_url":"noimage.jpg",
          "image":"1960s-selmer-zodiac-twin-30.jpg"
