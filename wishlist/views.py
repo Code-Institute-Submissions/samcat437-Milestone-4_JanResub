@@ -25,27 +25,33 @@ def wishlist(request):
 def add_to_wishlist(request, item_id):
     """A view to add an item to the wishlist database"""
     
-    user = get_object_or_404(UserProfile, user=request.user) 
-    product = get_object_or_404(Product, pk=item_id) 
+    user = get_object_or_404(UserProfile, user=request.user)
+    product = get_object_or_404(Product, pk=item_id)
     redirect_url = request.POST.get('redirect_url')
     in_wishlist = Wishlist.objects.filter(product=product, user=user).exists()
-    wishlist_exists = Wishlist.objects.filter(user=user).exists()
 
     if in_wishlist:
         messages.info(request, f'This product already exists in your wishlist.')
     else:
-        if wishlist_exists:
-            print('wishlist exists')
-            Wishlist.save(product)
-            print(product)
-            messages.success(request, f'Added {product.name} to your wishlist')
-        else:
-            print('no wishlist exists')
-            user_wishlist = Wishlist.objects.create(product=product, user=user)
-            Wishlist.save(product)
-            messages.success(request, f'Added {product.name} to your wishlist')
+        new_wishlist = Wishlist(user=user, product=product)
+        Wishlist.save(new_wishlist)
+        Wishlist.save(product)
+        messages.success(request, f'Added {product.name} to your wishlist')
 
     return redirect(redirect_url)
+
+
+@login_required
+def delete_wishlist_confirmation(request, item_id):
+    """ Ask the user to confirm deletion of an item from their wishlist via template """
+
+    wishlist_item = get_object_or_404(Wishlist, pk=item_id)
+    template = 'wishlist/confirmation.html'
+    context = {
+        'wishlist_item': wishlist_item,
+    }
+
+    return render(request, template, context)
 
 
 
