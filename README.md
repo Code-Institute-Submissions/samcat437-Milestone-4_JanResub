@@ -51,13 +51,13 @@ View the live link here.
 
 View the project's users stories on Github: 
 
-[Admin and Store Management](https://github.com/samcat437/Milestone-4/blob/main/media/user_stories/Admin%20and%20Store%20Management.png)
+[Admin and Store Management](https://github.com/samcat437/Milestone-4/blob/main/docs/user_stories/Admin%20and%20Store%20Management.png)
 
-[Purchasing and Checkout](https://github.com/samcat437/Milestone-4/blob/main/media/user_stories/Admin%20and%20Store%20Management.png)
+[Purchasing and Checkout](https://github.com/samcat437/Milestone-4/blob/main/docs/user_stories/Admin%20and%20Store%20Management.png)
 
-[Registration and User Accounts](https://github.com/samcat437/Milestone-4/blob/main/media/user_stories/Registration%20and%20User%20Accounts.png)
+[Registration and User Accounts](https://github.com/samcat437/Milestone-4/blob/main/docs/user_stories/Registration%20and%20User%20Accounts.png)
 
-[Reviews](https://github.com/samcat437/Milestone-4/blob/main/media/user_stories/Reviews.png)
+[Reviews](https://github.com/samcat437/Milestone-4/blob/main/docs/user_stories/Reviews.png)
 
 [Sorting and Searching](https://github.com/samcat437/Milestone-4/blob/main/media/user_stories/Sorting%20and%20Searching.png)
 
@@ -109,6 +109,8 @@ password: samcat437
 
 1. The My Account nav element will show Product Management, My Profile, My Wishlist, My Reviews, and Log out options.
 
+## How are the User Stories met across the site?
+
 ### Admin and Store Management
 
 1. Superuser have a Product Management link in their navigation.
@@ -136,7 +138,7 @@ password: samcat437
 2. When clicking on a product, a user is able to view previously written review by other users.
 3. Users can read their reviews on their review page.
 4. A user can edit their review by clicking edit review on their review page.
-5. A user can delete their review by clicking delete.
+5. A user can delete their review by clicking delete and confirming.
 
 ### Sorting and Searching
 
@@ -152,7 +154,7 @@ Users are able to use the product filter, shop bag and profile link to view navi
 1. When a user clicks on a product, they will be able to click on the "add to wishlist" option.  
 2. They will receive a notification that they item has been added to their wishlist, or that the item is already in the wishlist. 
 3. They can then click on "My Wishlist" in the navigation menu.
-4. Once navigating to their Wishlist, a user can view and delete the Wishlist as appropriate.
+4. Once navigating to their Wishlist, a user can view and delete the Wishlist as appropriate after confirmation.
 
 ## Design
 
@@ -168,7 +170,19 @@ Audiowide font was sourced from Google Fonts to create a vintage, 80s look.
 
 The main image on the home page is [here](https://www.freepik.com/free-photo/closeup-man-playing-bass-guitar_21782474.htm#query=rock%20and%20roll%20male%20musician%20bass%20guitar&position=5&from_view=search&track=sph). Image is by pvproductions on Freepik.
 
+All product images and data have been photographed by myself.
+
 ## Wireframes 
+
+Wireframes can be found in docs/wireframes. 
+
+They are as follows: 
+1. Products Page
+2. Wishlist List
+3. Wishlist Confirmation (deletion)
+4. Profile
+5. Add Review
+6. Edit Review
 
 ### Technologies
 
@@ -208,7 +222,7 @@ The main image on the home page is [here](https://www.freepik.com/free-photo/clo
 
 ### Fixed Bugs
 
-During development, I struggled with my wishlist model. I overcomplicated the model with a many to many relationship which I had to redo. I ended up deleting the entire app and started again, but it seemed like I still had old data in my database after deletion. Tutor support helped delete every migration file in the app and remigrate the database. This took a few tries, but finally the database was stable.
+During development, I struggled with my wishlist model. I overcomplicated the model with a many to many relationship which I had to redo. I ended up deleting the entire app and started again, but it seemed like I had old data in my database after deletion. Tutor support helped me delete every migration file in the app and remigrate the database. This took a few tries, but finally the database was stable.
 
 I had an issue with the S3 bucket loading images. It ended up having added another file extension of ".JPG" onto my images that alrady had ".jpg" there. It took trial and error and reading of documentation to see that the bucket preferes lower case ".jpg". Changing it to this solved the issue. 
 
@@ -216,7 +230,15 @@ I had some problems with my wishlist views accessing correct variables and urls.
 
 ### Remaining Bugs
 
-I am not happy with my reviews functionality yet, but I have ran out of time for my project. I only want a user who has bought the item to be able to review it. However, I do not have the functionality in my form to prefill and lock the information from the product. Once that is there, it will work as intended.
+The UI could be improved on the profile page. At the moment, it is a bit messy. Perhaps some of the order fields could be removed and the Add Review link more attractive. On the products page, the smaller images are not in-line with the bigger ones which is not visually attractive. 
+
+### Future Features
+
+I would like to add a toggle to the wishlist list button, so that if clicked, it will be disabled and the message telling users that the item already exists will not be needed. I would like to add javascript to the button so that it turns pink when selected. 
+
+I would like to add functionality so that if a product has been reviewed, it will be displayed on the product detail page, so that it is more useful to users. Having it in a separate review page isn't helpful, but this served as a coding exercise. 
+
+I would like to remove the option of quantity in a future version as there is only one unique item available.
 
 ## Testing 
 
@@ -238,17 +260,13 @@ Not a lot of JS was used in this project, and this was taken from the Stripe doc
 
 [Pep8online](https://www.tutorialspoint.com/online_python_formatter.htm)
 
-This site was used to beautify the python code. 
-
+This site was used to beautify the python code. However, when fixing long lines, the code seemed to break so I have left it as is to ensure the program works for submission.
 
 ## Manual Testing 
 
 Manual tests were conducted throughout the development process via the python terminal to understand the UX, routing and data population features.
 
-
-### Testing 
-
-Test screenshots can be found in the docs/testing folder.
+Test screenshots with descriptive titles can be found in the docs/testing folder. Testing was carried out on devices of various screen sizes. 
 
 ## Deployment 
 
