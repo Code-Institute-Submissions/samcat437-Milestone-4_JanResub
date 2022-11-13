@@ -65,9 +65,9 @@ View the project's users stories on Github:
 
 [Wistlist](https://github.com/samcat437/Milestone-4/blob/main/media/user_stories/Wishlist.png)
 
-## Features
+## Features to support User Stories
 
-### Navbar and Footer
+### Navbar
 
 1. Navbar will be at the top of all pages on the desktop version once logged into the portal.
 2. Navbar on desktop will display all options. On mobile, once the hamburger is clicked, the navigation options will appear.
@@ -82,13 +82,13 @@ View the project's users stories on Github:
     * Login
 6. Clicking on the relevant navigation option will redirect the user to that page.
 
-7. Footer will be sticky. Navbar will be responsive and fill the entire width of small screens.
- 
+7. Navbar will be responsive and fill the entire width of small screens.
  
 ### Home Page
 
 1. The home page will welcome users to the store and have a useful navigation bar to access the site. 
-2. A large button will direct the user to the All Products page where they can quickly start browsing and making purchases.
+2. A large button will direct the user to the All Products page where they can quickly start browsing and making purchases. 
+3. A user may click on a product to view more details about the product. 
 
 ## Navbar
 
@@ -103,20 +103,50 @@ View the project's users stories on Github:
 
 1. The My Account nav element will show Product Management, My Profile, My Wishlist, My Reviews, and Log out options.
 
+### Admin and Store Management
+
+1. Superuser have a Product Management link in their navigation.
+2. Clicking on this directs them to a form where they can add a product. 
+3. On the products page or product detail page, a superuser has access to the edit form, prefilled with the existing data, and the ability to edit it. 
+4. On the same pages, the superuser can delete a product. 
+
+### Purchasing and Checkout
+
+1. Shoppers can view their bag at any time by clicking the bag icon in the nav bar. This is totalled so they can see their total. 
+2. In the bag, they can remove items. 
+3. on the checkout page, the user is able to fill out their payment information through Stripe.
+4. After checkout, the order information is saved to the user's profile. 
+
+### Registration and User Accounts
+
+1. Users are directed through Allauth to register for an account.
+2. Logging in and out is easy via allauth after clicking on the appropriate link in the navbar.
+3. Users are able to recover their password through Allauth.
+4. Registered users can save their delivery information on their profile as well as view orders, wishlists, and reviews in one central location. 
+
+### Reviews 
+
+1. Users are able to review their orders via their profile page by clicking on add review. 
+2. When clicking on a product, a user is able to view previously written review by other users.
+3. Users can read their reviews on their review page.
+4. A user can edit their review by clicking edit review on their review page.
+5. A user can delete their review by clicking delete.
+
+### Sorting and Searching
+
+1. Users are able to sort and search products via the navigation at the top of the page, including by category.
+2. Users are able to search with key words using the search bar.
+
+### Viewing and Navigation
+
+Users are able to use the product filter, shop bag and profile link to view navigation over the site.
+
 ### My Wishlist
 
 1. When a user clicks on a product, they will be able to click on the "add to wishlist" option.  
 2. They will receive a notification that they item has been added to their wishlist, or that the item is already in the wishlist. 
-3. They can then click on the link "View Wishlist" or click on "My Wishlist" in the navigation menu.
+3. They can then click on "My Wishlist" in the navigation menu.
 4. Once navigating to their Wishlist, a user can view and delete the Wishlist as appropriate.
-5. The user can add the item directly to their bag.
-
-### Reviews 
-
-1. When clicking on a product, a user is able to view previously written review by other users.
-2. If the user has purchased the product, they will be able to write a review of the product.
-2. If the user is the author of the review, they will be able to edit or delete their review.
-3. The user is able to navigation to the "My Reviews" page in order to view, edit and delete their review in one place.
 
 ## Design
 
@@ -131,7 +161,6 @@ Audiowide font was sourced from Google Fonts to create a vintage, 80s look.
 ### Images 
 
 The main image on the home page is [here](https://www.freepik.com/free-photo/closeup-man-playing-bass-guitar_21782474.htm#query=rock%20and%20roll%20male%20musician%20bass%20guitar&position=5&from_view=search&track=sph). Image is by pvproductions on Freepik.
-
 
 ## Wireframes 
 
@@ -169,7 +198,19 @@ The main image on the home page is [here](https://www.freepik.com/free-photo/clo
 
 [Chrome Dev Tools](https://developer.chrome.com/docs/devtools/) : Chrome Dev tools were utilised for the Javascript console as well as to verify the site's responsiveness and visual presentation. 
 
-### Bugs
+## Bugs
+
+### Fixed Bugs
+
+During development, I struggled with my wishlist model. I overcomplicated the model with a many to many relationship which I had to redo. I ended up deleting the entire app and started again, but it seemed like I still had old data in my database after deletion. Tutor support helped delete every migration file in the app and remigrate the database. This took a few tries, but finally the database was stable.
+
+I had an issue with the S3 bucket loading images. It ended up having added another file extension of ".JPG" onto my images that alrady had ".jpg" there. It took trial and error and reading of documentation to see that the bucket preferes lower case ".jpg". Changing it to this solved the issue. 
+
+I had some problems with my wishlist views accessing correct variables and urls. I was getting an 404 error that the path could not be found. It turned out that I needed an ending slash on my wishlist/urls.py path. 
+
+### Remaining Bugs
+
+I am not happy with my reviews functionality yet, but I have ran out of time for my project. I only want a user who has bought the item to be able to review it. However, I do not have the functionality in my form to prefill and lock the information from the product. Once that is there, it will work as intended.
 
 ## Testing 
 
@@ -179,17 +220,19 @@ The W3C Markup Validator, W3C CSS Validator, Jshint and Pep8 Services were used 
 
 [W3C Markup Validator](https://validator.w3.org/)
 
-
+I validated my code for the templates that I wrote, review.html, confirmation.html, wishlist.html, add_review.html and edit_review.html. There were similar errors picked up by the validator regarding the django templating language. It seems like it can be largely ignored. 
 
 [W3C CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) 
 
-
+Valid CSS can be found in docs/code_validation.
 
 [Jshint](https://jshint.com/) 
 
+Not a lot of JS was used in this project, and this was taken from the Stripe documentation via the Code Institute tutorial. 
 
+[Pep8online](https://www.tutorialspoint.com/online_python_formatter.htm)
 
-[Pep8online](http://pep8online.com/)
+This site was used to beautify the python code. 
 
 
 ## Manual Testing 
@@ -198,7 +241,6 @@ Manual tests were conducted throughout the development process via the python te
 
 
 ### Test Cases based on User Stories
-
 
 
 ## Deployment 
@@ -277,7 +319,7 @@ The config/environment variables should be set up as follows:
 
 ### Via Gitpod ran locally
 
-1. Navigate to the Github repository at [here]().
+1. Navigate to the Github repository at [here](https://github.com/samcat437/Milestone-4).
 2. Choose "Gitpod."
 3. In the Bash terminal, type: `python3 manage.py runserver`
 4. Choose "Make Public" when a blue button appears.

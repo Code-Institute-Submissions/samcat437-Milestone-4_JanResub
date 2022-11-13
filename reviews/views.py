@@ -51,8 +51,9 @@ def add_review(request):
 @login_required
 def edit_review(request, review_items_id):
     """" A view to edit a user's review """
+    
     user = get_object_or_404(UserProfile, user=request.user)
-    review = get_object_or_404(Reviews, pk=review_items_id)
+    review = get_object_or_404(Reviews, pk=review_items_id, user=user)
 
     if request.method == 'POST':
         user_id = request.user
@@ -79,7 +80,8 @@ def edit_review(request, review_items_id):
 def delete_review(request, review_items_id):
     """ Delete a review from the site """
 
-    review = get_object_or_404(Reviews, pk=review_items_id)
+    user = get_object_or_404(UserProfile, user=request.user)
+    review = get_object_or_404(Reviews, pk=review_items_id, user=user)
     review.delete()
     messages.success(request, 'Review deleted!')
     return redirect(reverse('reviews'))

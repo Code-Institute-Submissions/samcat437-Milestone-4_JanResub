@@ -11,19 +11,19 @@
 {% endblock %}
 
 {% block content %}
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-md-6">
-                <hr>
-                <h2 class="logo-font mb-4">My Wishlist</h2>
-                <hr>
-            </div>
+<div class="overlay"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <hr>
+            <h2 class="logo-font mb-4">My Wishlist</h2>
+            <hr>
         </div>
+    </div>
 
         <div class="row">
             <div class="col">
-                {% wishlist_item %}
+                {% if wishlist_items %}
                 <div class="table-responsive rounded">
                     <table class="table table-sm table-borderless">
                         <thead class="text-black">
@@ -33,23 +33,24 @@
                                 <th scope="col">Price</th>
                             </tr>
                         </thead>
+                        {% for item in wishlist_items %}
                             <tr>
                                 <td class="p-3 w-25">
-                                    {% wishlist_item.product.image %}
-                                    <img class="img-fluid rounded" src="{{ wishlist_item.product.image.url }}" alt="{{ wishlist_item.product.name }}">
+                                    {% if item.product.image %}
+                                    <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
                                     {% else %}
-                                    <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ wishlist_item.product.name }}">
+                                    <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
                                     {% endif %}
                                 </td>
                                 <td class="py-3">
-                                    <p class="my-0"><strong>{{ wishlist_item.product.name }}</strong></p>
-                                    <p class="my-0 small text-muted">SKU: {{ wishlist_item.product.sku|upper }}</p>
+                                    <p class="my-0"><strong>{{ item.product.name }}</strong></p>
+                                    <p class="my-0 small text-muted">SKU: {{ item.product.sku|upper }}</p>
                                 </td>
                                 <td class="py-3">
-                                    <p class="my-0">${{ wishlist_item.product.price }}</p>
+                                    <p class="my-0">${{ item.product.price }}</p>
                                 </td>
                                 <td class="py-3">
-                                    <p class="my-0">{{ wishlist_item.review }}</p>
+                                    <p class="my-0">{{ item.review }}</p>
                                 </td>
                                 <td class="py-3">
                                     <small class="ml-3">
@@ -57,6 +58,7 @@
                                     </small>
                                 </td>
                             </tr>
+                        {% endfor %}
                             <tr>
                                 <td colspan="5" class="text-right">
                                     <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 btn-lg">
@@ -69,6 +71,15 @@
                             </tr>
                         </table>
                     </div>
+                {% else %}
+                    <p class="lead mb-5">You haven't added any items to your wishlist yet.</p>
+                    <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                        <span class="icon">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                        <span class="text-uppercase">Keep Shopping</span>
+                    </a>
+                {% endif %}
             </div>
         </div>
     </div>

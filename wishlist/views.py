@@ -44,7 +44,6 @@ def add_to_wishlist(request, item_id):
 @login_required
 def delete_wishlist_confirmation(request, item_id):
     """ Ask the user to confirm deletion of an item from their wishlist via template """
-
     wishlist_item = get_object_or_404(Wishlist, pk=item_id)
     template = 'wishlist/confirmation.html'
     context = {
@@ -54,12 +53,12 @@ def delete_wishlist_confirmation(request, item_id):
     return render(request, template, context)
 
 
-
 @login_required
-def delete_wishlist(request, item_id):
+def delete_wishlist(request, wishlist_item_id):
     """ Delete a wishlist item from the wishlist """
 
-    wishlist = get_object_or_404(Wishlist, pk=item_id)
+    user = get_object_or_404(UserProfile, user=request.user)
+    wishlist = get_object_or_404(Wishlist, pk=wishlist_item_id, user=user)
     wishlist.delete()
     messages.success(request, 'Item deleted from your wishlist!')
     return redirect(reverse('wishlist'))
