@@ -77,6 +77,18 @@ def edit_review(request, review_items_id):
 
 
 @login_required
+def delete_review_confirmation(request, item_id):
+    """ Ask the user to confirm deletion of an item from their wishlist via template """
+    review_item = get_object_or_404(Reviews, pk=item_id)
+    template = 'reviews/confirmation.html'
+    context = {
+        'review_item': review_item,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
 def delete_review(request, review_items_id):
     """ Delete a review from the site """
 
