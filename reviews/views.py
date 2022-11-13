@@ -59,9 +59,6 @@ def edit_review(request, review_items_id):
     user = get_object_or_404(UserProfile, user=request.user)
     review = get_object_or_404(Reviews, pk=review_items_id, user=user)
 
-    if not request.user.is_user:
-        messages.error(request, 'Sorry, only review authors can edit their review')
-
     if request.method == 'POST':
         user_id = request.user
         form = ReviewForm(request.POST, request.FILES, instance=review)
@@ -101,8 +98,7 @@ def delete_review(request, review_items_id):
 
     user = get_object_or_404(UserProfile, user=request.user)
     review = get_object_or_404(Reviews, pk=review_items_id, user=user)
-    if not request.user.is_user:
-        messages.error(request, 'Sorry, only review authors can delete their review')
+    
     review.delete()
     messages.success(request, 'Review deleted!')
     return redirect(reverse('reviews'))

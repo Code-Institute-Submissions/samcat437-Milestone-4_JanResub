@@ -39,7 +39,7 @@
                         </thead>
                             <tr>
                                 <td class="p-3 w-25">
-                                    {% if wishlist_item.product.image %}
+                                    {% if review_item.product.image %}
                                     <img class="img-fluid rounded" src="{{ review_item.product.image.url }}" alt="{{ review_item.product.name }}">
                                     {% else %}
                                     <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ review_item.product.name }}">
