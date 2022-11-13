@@ -16,7 +16,7 @@ View the live link here.
 |   |   | Easily view the total of my purchases at any time | Ensure that the total is correct. |
 |   |   | View a specific category of products | Quickly find products I’m interested in without having to search through all the products. |
 | Sorting and Searching |
-|   | User/Shopper | Sort the list of available products | kEasily identify the products by type. |
+|   | User/Shopper | Sort the list of available products | Easily identify the products by type. |
 |   |   | Sort a specific category of product | Find the product by year or era. |
 |   |   | Search a product by name or description | Find a specific product I’d like to purchase. |
 |   |   | Easily see what I’ve searched for and the number of results | Quickly see if the product I want is available. |
