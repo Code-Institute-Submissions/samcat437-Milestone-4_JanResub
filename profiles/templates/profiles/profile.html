@@ -63,14 +63,14 @@
                                                     {% if item.product.has_sizes %}
                                                         Size {{ item.product.size|upper }}
                                                     {% endif %}{{ item.product.name }} x{{ item.quantity }}
-                                                </li>
-                                            {% endfor %}
+                                                </li>                                            
                                         </ul>
                                     </td>
-                                    <td>${{ order.grand_total }}</td>
                                     <td>
-                                        <div class="col-8"><a class="text-muted text-lg-right" href="{% url 'add_review' %}">Add Review</a></div>
+                                        <div class="col-8"><a class="text-muted text-lg-right" href="{% url 'add_review' item.product.id %}">Add Review</a></div>
                                     </td>
+                                    <td>${{ order.grand_total }}</td>
+                                    {% endfor %}
                                 </tr>
                             {% endfor %}
                         </tbody>

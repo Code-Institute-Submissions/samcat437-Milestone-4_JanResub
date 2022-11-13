@@ -6,7 +6,7 @@ class ReviewForm(forms.ModelForm):
 
     class Meta:
         model = Reviews
-        fields = '__all__'
+        fields = ('review',)
 
     def __init__(self, *args, **kwargs):
         """ 
@@ -14,12 +14,6 @@ class ReviewForm(forms.ModelForm):
         labels and set autofocus on first field
         """
         super().__init__(*args, **kwargs)
-        placeholders = {
-            'product': 'Select Product',
-            'review': 'Write your review here',
-         }
-
-        self.fields['product'].widget.attrs['autofocus'] = True
 
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'border-black rounded-0'

@@ -21,17 +21,21 @@ def reviews(request):
 
 
 @login_required
-def add_review(request):
+def add_review(request, item_id):
     """ A view to add an review to the user's wishlist """
-
     user = get_object_or_404(UserProfile, user=request.user)
-    review = Reviews.objects.filter(user=user)
+    product = get_object_or_404(Product, pk=item_id)
 
     if request.method == 'POST':
+        user = get_object_or_404(UserProfile, user=request.user)
+        new_form = Reviews.objects.filter(user=user)
         user_id = request.user
         form = ReviewForm(request.POST, request.FILES)
         if form.is_valid():
-            review = form.save()
+            new_form = form.save(commit=False)
+            new_form.user = user
+            new_form.product = product
+            new_form.save()
             messages.success(request, 'Successfully added review!')
             return redirect(reverse('reviews'))
         else:
@@ -41,8 +45,8 @@ def add_review(request):
 
     template = 'reviews/add_review.html'
     context = {
-        'review_items': review,
         'form': form,
+        'product': product
     }
 
     return render(request, template, context)
@@ -54,6 +58,9 @@ def edit_review(request, review_items_id):
     
     user = get_object_or_404(UserProfile, user=request.user)
     review = get_object_or_404(Reviews, pk=review_items_id, user=user)
+
+    if not request.user.is_user:
+        messages.error(request, 'Sorry, only review authors can edit their review')
 
     if request.method == 'POST':
         user_id = request.user
@@ -94,6 +101,8 @@ def delete_review(request, review_items_id):
 
     user = get_object_or_404(UserProfile, user=request.user)
     review = get_object_or_404(Reviews, pk=review_items_id, user=user)
+    if not request.user.is_user:
+        messages.error(request, 'Sorry, only review authors can delete their review')
     review.delete()
     messages.success(request, 'Review deleted!')
     return redirect(reverse('reviews'))
