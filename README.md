@@ -65,6 +65,12 @@ View the project's users stories on Github:
 
 [Wistlist](https://github.com/samcat437/Milestone-4/blob/main/media/user_stories/Wishlist.png)
 
+## Credientials 
+
+Super User: 
+username: samcat437
+password: samcat437
+
 ## Features to support User Stories
 
 ### Navbar
@@ -240,8 +246,9 @@ This site was used to beautify the python code.
 Manual tests were conducted throughout the development process via the python terminal to understand the UX, routing and data population features.
 
 
-### Test Cases based on User Stories
+### Testing 
 
+Test screenshots can be found in the docs/testing folder.
 
 ## Deployment 
 
