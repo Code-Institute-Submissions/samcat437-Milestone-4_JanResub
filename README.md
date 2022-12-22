@@ -21,9 +21,9 @@ View the live link here.
 |   |   | Search a product by name or description | Find a specific product I’d like to purchase. |
 |   |   | Easily see what I’ve searched for and the number of results | Quickly see if the product I want is available. |
 | Purchasing and Checkout |
-|   | User/Shopper | search for specific products | find products I am interested in buying. |
-|   |   | easily understand the search results | quickly decide which product I want to buy. |
-|   |   | sort by price, name, category and rating  | view a wide range and choose which to buy. |
+|   | User/Shopper | Search for specific products | Find products I am interested in buying. |
+|   |   | Easily understand the search results | Quuickly decide which product I want to buy. |
+|   |   | Sort by price, name, category and rating  | View a wide range and choose which to buy. |
 | Checkout  |
 | | Shopper | View items in my bag to be purchased | Identify the total cost of my purchase and all items I will receive. |
 |   |   | Adjust items in my bag to be purchased | Easily make changes to my purchase before checkout. |
