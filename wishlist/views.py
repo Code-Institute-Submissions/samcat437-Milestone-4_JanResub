@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404, get_list_or_404
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from django.contrib import messages
@@ -10,14 +10,30 @@ from products.models import Product
 @login_required
 def wishlist(request):
     """ A view to return the wishlist page """
-
+    items = []
     user = get_object_or_404(UserProfile, user=request.user)
     wishlist = Wishlist.objects.filter(user=user)
+    wishlist_owner = wishlist[0]
+    wishlist_exists = WishlistItem.objects.filter(wishlist=wishlist_owner).exists()
 
-    template = 'wishlist/wishlist.html'
-    context = {
-        'wishlist_items': wishlist,
-    }
+    if wishlist_exists:
+        user_wishlist = get_list_or_404(WishlistItem, wishlist=wishlist_owner)
+        for obj in user_wishlist:
+            product = Product.objects.filter(wishlist=wishlist_owner)
+            items.append(product)
+        template = 'wishlist/wishlist.html'
+        context = {
+            'wishlist_items': True,
+            'products': items
+        }
+        return render(request, template, context)
+    
+    else:
+        context = {
+            'wishlist_items': False,
+        }
+        messages.error(request, "Click 'Add to wishlist' to add a item ")
+        return render(request, 'products/products.html', context)
     
     return render(request, template, context)
 
@@ -25,22 +41,22 @@ def wishlist(request):
 @login_required
 def add_to_wishlist(request, item_id):
     """A view to add an item to the wishlist database"""
-    
+
     redirect_url = request.POST.get('redirect_url')
     user = get_object_or_404(UserProfile, user=request.user)
     wishlist = Wishlist.objects.get_or_create(user=user)
-    wishlist_user = wishlist[0]
+    wishlist_owner = wishlist[0]
 
     product = Product.objects.get(pk=item_id)
     if request.POST:
-        test = WishlistItem.objects.filter(wishlist=wishlist_user, product=product).exists()
-        if test:
-            messages.error(request, "Product already in your wishlist")
+        wishlist_exists = WishlistItem.objects.filter(wishlist=wishlist_owner, product=product).exists()
+        if wishlist_exists:
+            messages.error(request, "This product already exists in your wishlist")
             return redirect(redirect_url)
 
         else:
-            added_item = WishlistItem(wishlist=wishlist_user, product=product, date_added=timezone.now())
-            added_item.save()
+            new_item = WishlistItem(wishlist=wishlist_owner, product=product, date_added=timezone.now())
+            new_item.save()
             messages.success(request, "Product added to your wishlist")
             return redirect(redirect_url)
     else:
@@ -53,10 +69,11 @@ def add_to_wishlist(request, item_id):
 @login_required
 def delete_wishlist_confirmation(request, item_id):
     """ Ask the user to confirm deletion of an item from their wishlist via template """
-    wishlist_item = get_object_or_404(Wishlist, pk=item_id)
+
+    product = WishlistItem.objects.get(product=product)
     template = 'wishlist/confirmation.html'
     context = {
-        'wishlist_item': wishlist_item,
+        'product': product,
     }
 
     return render(request, template, context)

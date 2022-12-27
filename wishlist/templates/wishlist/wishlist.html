@@ -33,28 +33,28 @@
                                 <th scope="col">Price</th>
                             </tr>
                         </thead>
-                        {% for item in wishlist_items %}
+                        {% for product in products %}
                             <tr>
                                 <td class="p-3 w-25">
-                                    {% if item.product.image %}
-                                    <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                                    {% if product.image %}
+                                    <img class="img-fluid rounded" src="{{ product.image.url }}" alt="{{ product.name }}">
                                     {% else %}
-                                    <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
+                                    <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                                     {% endif %}
                                 </td>
                                 <td class="py-3">
-                                    <p class="my-0"><strong>{{ item.product.name }}</strong></p>
-                                    <p class="my-0 small text-muted">SKU: {{ item.product.sku|upper }}</p>
+                                    <p class="my-0"><strong>{{ product.name }}</strong></p>
+                                    <p class="my-0 small text-muted">SKU: {{ product.sku|upper }}</p>
                                 </td>
                                 <td class="py-3">
-                                    <p class="my-0">${{ item.product.price }}</p>
+                                    <p class="my-0">${{ product.price }}</p>
                                 </td>
                                 <td class="py-3">
-                                    <p class="my-0">{{ item.review }}</p>
+                                    <p class="my-0">{{ product.review }}</p>
                                 </td>
                                 <td class="py-3">
                                     <small class="ml-3">
-                                        <a class="text-danger" href="{% url 'delete_wishlist_confirmation' item.id %}">Delete</a>
+                                        <a class="text-danger" href="{% url 'delete_wishlist_confirmation' product.id %}">Delete</a>
                                     </small>
                                 </td>
                             </tr>
