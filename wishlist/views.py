@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 from django.contrib import messages
 from profiles.models import UserProfile
-from wishlist.models import Wishlist
+from wishlist.models import Wishlist, WishlistItem
 from products.models import Product
 
 
@@ -25,18 +26,26 @@ def wishlist(request):
 def add_to_wishlist(request, item_id):
     """A view to add an item to the wishlist database"""
     
-    user = get_object_or_404(UserProfile, user=request.user)
-    product = get_object_or_404(Product, pk=item_id)
     redirect_url = request.POST.get('redirect_url')
-    in_wishlist = Wishlist.objects.filter(product=product, user=user).exists()
+    user = get_object_or_404(UserProfile, user=request.user)
+    wishlist = Wishlist.objects.get_or_create(user=user)
+    wishlist_user = wishlist[0]
 
-    if in_wishlist:
-        messages.info(request, f'This product already exists in your wishlist.')
+    product = Product.objects.get(pk=item_id)
+    if request.POST:
+        test = WishlistItem.objects.filter(wishlist=wishlist_user, product=product).exists()
+        if test:
+            messages.error(request, "Product already in your wishlist")
+            return redirect(redirect_url)
+
+        else:
+            added_item = WishlistItem(wishlist=wishlist_user, product=product, date_added=timezone.now())
+            added_item.save()
+            messages.success(request, "Product added to your wishlist")
+            return redirect(redirect_url)
     else:
-        new_wishlist = Wishlist(user=user, product=product)
-        Wishlist.save(new_wishlist)
-        Wishlist.save(product)
-        messages.success(request, f'Added {product.name} to your wishlist')
+        messages.error(request, "Click 'Add to wishlist' to add a item ")
+        return render(request, 'home/index.html')
 
     return redirect(redirect_url)
 
