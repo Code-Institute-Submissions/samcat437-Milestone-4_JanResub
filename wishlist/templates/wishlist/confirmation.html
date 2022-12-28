@@ -18,14 +18,14 @@
                 <h2 class="logo-font mb-4">Delete</h2>
                 <hr>
                 <p>Are you sure you want to delete this item from your wishlist?</p>
-                <form method="POST" action="{% url 'delete_wishlist' wishlist_item.id %}">
+                <form method="POST" action="{% url 'delete_wishlist' product.id %}">
                     {% csrf_token %}
                     <a class="btn btn-outline-black rounded-0" href="{% url 'wishlist' %}">Cancel</a>
                     <button class="btn btn-outline-black rounded-0" type="submit">Delete</button>
                 </form>
             </div>
         </div>
-        {% if wishlist_item %}
+        {% if product %}
         <div class="row">
             <div class="col">
                 <div class="table-responsive rounded">
@@ -39,21 +39,21 @@
                         </thead>
                             <tr>
                                 <td class="p-3 w-25">
-                                    {% if wishlist_item.product.image %}
-                                    <img class="img-fluid rounded" src="{{ wishlist_item.product.image.url }}" alt="{{ wishlist_item.product.name }}">
+                                    {% if product.image %}
+                                    <img class="img-fluid rounded" src="{{ product.image.url }}" alt="{{ product.name }}">
                                     {% else %}
-                                    <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ wishlist_item.product.name }}">
+                                    <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                                     {% endif %}
                                 </td>
                                 <td class="py-3">
-                                    <p class="my-0"><strong>{{ wishlist_item.product.name }}</strong></p>
-                                    <p class="my-0 small text-muted">SKU: {{ wishlist_item.product.sku|upper }}</p>
+                                    <p class="my-0"><strong>{{ product.name }}</strong></p>
+                                    <p class="my-0 small text-muted">SKU: {{ product.sku|upper }}</p>
                                 </td>
                                 <td class="py-3">
-                                    <p class="my-0">${{ wishlist_item.product.price }}</p>
+                                    <p class="my-0">${{ product.price }}</p>
                                 </td>
                                 <td class="py-3">
-                                    <p class="my-0">{{ wishlist_item.review }}</p>
+                                    <p class="my-0">{{ product.review }}</p>
                                 </td>
                             </tr>
                             <tr>

@@ -18,14 +18,15 @@ def wishlist(request):
 
     if wishlist_exists:
         user_wishlist = get_list_or_404(WishlistItem, wishlist=wishlist_owner)
-        for obj in user_wishlist:
-            product = Product.objects.filter(wishlist=wishlist_owner)
-            items.append(product)
+        items = Product.objects.filter(wishlist=wishlist_owner)
+
         template = 'wishlist/wishlist.html'
         context = {
             'wishlist_items': True,
             'products': items
         }
+        print(items)
+        print(1)
         return render(request, template, context)
     
     else:
@@ -34,7 +35,7 @@ def wishlist(request):
         }
         messages.error(request, "Click 'Add to wishlist' to add a item ")
         return render(request, 'products/products.html', context)
-    
+    print(2)
     return render(request, template, context)
 
 
@@ -70,7 +71,7 @@ def add_to_wishlist(request, item_id):
 def delete_wishlist_confirmation(request, item_id):
     """ Ask the user to confirm deletion of an item from their wishlist via template """
 
-    product = WishlistItem.objects.get(product=product)
+    product = get_object_or_404(Product, pk=item_id)
     template = 'wishlist/confirmation.html'
     context = {
         'product': product,
@@ -80,11 +81,10 @@ def delete_wishlist_confirmation(request, item_id):
 
 
 @login_required
-def delete_wishlist(request, wishlist_item_id):
+def delete_wishlist(request, item_id):
     """ Delete a wishlist item from the wishlist """
 
-    user = get_object_or_404(UserProfile, user=request.user)
-    wishlist = get_object_or_404(Wishlist, pk=wishlist_item_id, user=user)
-    wishlist.delete()
+    product = get_object_or_404(Product, pk=item_id)
+    product.delete()
     messages.success(request, 'Item deleted from your wishlist!')
     return redirect(reverse('wishlist'))
