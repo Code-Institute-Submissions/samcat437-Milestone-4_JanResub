@@ -12,10 +12,10 @@ body {
     font-family: 'Audiowide', cursive;
 }
 
-.offset-lg-2 {
-    overflow-x: hidden!important;
-    padding: 0!important;
+.box {
+    border: 1px solid!important;
 }
+
 
 /* from Bulma */
 .icon {
