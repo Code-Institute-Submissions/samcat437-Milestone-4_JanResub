@@ -77,6 +77,7 @@
                     </table>
                 </div>
                 <p><a class="text-muted" href="{% url 'wishlist' %}">My Wishlist</a></p>
+                {% if wishlist_items %}
                 <div class="order-history table-responsive">
                     <table class="table table-sm table-borderless">
                         <thead>
@@ -88,30 +89,34 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for item in wishlist_items %}
+                            {% for product in products %}
                             <tr>
                                 <td class="p-3 w-25">
-                                    {% if item.product.image %}
-                                    <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                                    {% if product.image %}
+                                    <img class="img-fluid rounded" src="{{ product.image.url }}" alt="{{ product.name }}">
                                     {% else %}
-                                    <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
+                                    <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                                     {% endif %}
                                 </td>
                                 <td>
-                                    <p class="my-0"><strong>{{ item.product.name }}</strong></p>
-                                    <p class="my-0 small text-muted">SKU: {{ item.product.sku|upper }}</p>
+                                    <p class="my-0"><strong>{{ product.name }}</strong></p>
                                 </td>
                                 <td>
-                                    <p class="my-0 small text-muted">SKU:</p>
+                                    <p class="my-0 small text-muted">{{ product.sku|upper }}</p>
                                 </td>
                                 <td>
-                                    <p class="my-0">${{ item.product.price }}</p>
+                                    <p class="my-0">${{ product.price }}</p>
                                 </td>
                             </tr>
                             {% endfor %}
                         </tbody>
                     </table>
                 </div>
+                {% else %}
+                <div class="order-history table-responsive">
+                    <p class="my-0 small text-muted">You haven't added any items to your wishlist yet.</p>
+                </div>
+                {% endif %}
                 <p><a class="text-muted" href="{% url 'reviews' %}">My Reviews</a></p>
                 <div class="order-history table-responsive">
                     <table class="table table-sm table-borderless">

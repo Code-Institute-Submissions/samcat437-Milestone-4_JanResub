@@ -1,10 +1,11 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 from profiles.models import UserProfile
 from reviews.models import Reviews
-from wishlist.models import Wishlist
+from wishlist.models import Wishlist, WishlistItem
+from products.models import Product
 from .forms import UserProfileForm
 
 from checkout.models import Order
@@ -29,17 +30,33 @@ def profile(request):
         form = UserProfileForm(instance=profile)
     orders = profile.orders.all()
 
-    template = 'profiles/profile.html'
-    context = {
-        'form': form,
-        'orders': orders,
-        'on_profile_page': True,
-        'review_items': review,
-        'wishlist_items': wishlist
-    }
+    items = []
+    user = get_object_or_404(UserProfile, user=request.user)
+    wishlist = Wishlist.objects.filter(user=user)
+    wishlist_owner = wishlist[0]
+    wishlist_exists = WishlistItem.objects.filter(wishlist=wishlist_owner).exists()
 
-    return render(request, template, context)
+    if wishlist_exists:
+        user_wishlist = get_list_or_404(WishlistItem, wishlist=wishlist_owner)
+        items = Product.objects.filter(wishlist=wishlist_owner)
 
+        template = 'profiles/profile.html'
+        context = {
+            'form': form,
+            'orders': orders,
+            'on_profile_page': True,
+            'review_items': review,
+            'wishlist_items': True,
+            'products': items
+        }
+
+        return render(request, template, context)
+
+    else:
+        context = {
+            'wishlist_items': False,
+        }
+        
 
 def order_history(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
