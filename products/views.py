@@ -5,7 +5,10 @@ from django.db.models import Q
 from django.db.models.functions import Lower
 
 from .models import Product, Category
+from reviews.models import Reviews
+from profiles.models import UserProfile
 from .forms import ProductForm
+from reviews.forms import ReviewForm
 
 # Create your views here.
 
@@ -60,12 +63,32 @@ def all_products(request):
 
 
 def product_detail(request, product_id):
-    """ A view to show individual product details """
+    """ A view to show individual product details, generate product review or form to fill out review """
 
+    user = get_object_or_404(UserProfile, user=request.user)
     product = get_object_or_404(Product, pk=product_id)
+    reviews = Reviews.objects.filter(product=product_id)
+
+    if request.method == 'POST':
+        new_form = Reviews.objects.filter(user=user)
+        user_id = request.user
+        form = ReviewForm(request.POST, request.FILES)
+        if form.is_valid():
+            new_form = form.save(commit=False)
+            new_form.user = user
+            new_form.product = product
+            new_form.save()
+            messages.success(request, 'Successfully added review!')
+            return redirect(reverse('reviews'))
+        else:
+            messages.error(request, 'Your review submission failed. Please ensure the form is valid.')
+    else:
+        form = ReviewForm()
 
     context = {
+        'form': form,
         'product': product,
+        'review_items': reviews
     }
 
     return render(request, 'products/product_detail.html', context)

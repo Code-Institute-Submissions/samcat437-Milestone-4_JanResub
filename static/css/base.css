@@ -12,6 +12,11 @@ body {
     font-family: 'Audiowide', cursive;
 }
 
+.offset-lg-2 {
+    overflow-x: hidden!important;
+    padding: 0!important;
+}
+
 /* from Bulma */
 .icon {
     align-items: center;

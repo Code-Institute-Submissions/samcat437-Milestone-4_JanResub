@@ -23,6 +23,7 @@ def reviews(request):
 @login_required
 def add_review(request, item_id):
     """ A view to add an review to the user's wishlist """
+    
     user = get_object_or_404(UserProfile, user=request.user)
     product = get_object_or_404(Product, pk=item_id)
 
@@ -83,6 +84,7 @@ def edit_review(request, review_items_id):
 @login_required
 def delete_review_confirmation(request, item_id):
     """ Ask the user to confirm deletion of an item from their wishlist via template """
+
     review_item = get_object_or_404(Reviews, pk=item_id)
     template = 'reviews/confirmation.html'
     context = {

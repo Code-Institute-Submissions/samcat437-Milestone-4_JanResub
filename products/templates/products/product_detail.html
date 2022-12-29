@@ -103,6 +103,80 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-12 offset-lg-2">
+                <div class="col-12 col-md-6">
+                    <hr>
+                    <h2 class="logo-font mb-4">Reviews</h2>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 offset-lg-2">
+                {% if review_items %}
+                    <div class="table-responsive rounded">
+                        <table class="table table-sm table-borderless">
+                            <thead class="text-black">
+                                <tr>
+                                    <th scope="col">Product</th>
+                                    <th scope="col"></th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Review</th>
+                                </tr>
+                            </thead>
+
+                            {% for item in review_items %}
+                                <tr>
+                                    <td class="p-3 w-25">
+                                        {% if item.product.image %}
+                                        <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                                        {% else %}
+                                        <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
+                                        {% endif %}
+                                    </td>
+                                    <td class="py-3">
+                                        <p class="my-0"><strong>{{ item.product.name }}</strong></p>
+                                        <p class="my-0 small text-muted">SKU: {{ item.product.sku|upper }}</p>
+                                    </td>
+                                    <td class="py-3">
+                                        <p class="my-0">${{ item.product.price }}</p>
+                                    </td>
+                                    <td class="py-3">
+                                        <p class="my-0">{{ item.review }}</p>
+                                    </td>
+                                    <td class="py-3">
+                                        <small class="ml-3">
+                                            <a href="{% url 'edit_review' item.id %}">Edit</a> |
+                                            <a class="text-danger" href="{% url 'delete_review_confirmation' item.id %}">Delete</a>
+                                        </small>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+            {% else %}
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <p class="text-muted">Please fill out the form below to submit your product review.</p>
+                    <form method="POST" class="form mb-2" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% for field in form %}
+                            {% if field.name != 'image' %}
+                                {{ field | as_crispy_field }}
+                            {% else %}
+                                {{ field }}
+                            {% endif %}
+                        {% endfor %}
+                        <div class="text-right">
+                            <a class="btn btn-outline-black rounded-0" href="{% url 'profile' %}">Cancel</a>
+                            <button class="btn btn-black rounded-0" type="submit">Add Review</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            {% endif %}
+        </div>
     </div>
 {% endblock %}
 
