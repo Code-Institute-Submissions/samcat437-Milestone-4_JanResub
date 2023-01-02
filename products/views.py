@@ -70,7 +70,9 @@ def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     reviews = Reviews.objects.filter(product=product_id)
     orders = OrderLineItem.objects.filter(product=product_id).exists()
-    
+    this_review = reviews.filter(user=user).exists()
+    ignore = True
+
     if request.method == 'POST':
         new_form = Reviews.objects.filter(user=user)
         user_id = request.user
@@ -87,11 +89,19 @@ def product_detail(request, product_id):
     else:
         form = ReviewForm()
 
+    if this_review is True:
+        orders = False
+
+    if this_review is True and orders is False:
+        ignore = False
+
     context = {
         'form': form,
         'product': product,
         'review_items': reviews,
-        'order_match': orders
+        'order_match': orders,
+        'already_reviewed': this_review,
+        'ignore': ignore
     }
 
     return render(request, 'products/product_detail.html', context)

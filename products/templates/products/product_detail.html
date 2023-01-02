@@ -148,6 +148,13 @@
                         </table>
                     </div>
                 {% endif %}
+            {% if already_reviewed %}
+            <div class="row">
+                <div class="col-12">
+                    <p class="text-muted mb-5">Please edit or delete to your change your previous review.</p>
+                </div>
+            </div>
+            {% endif %}
             {% if order_match %}
             <div class="row">
                 <div class="col-12">
@@ -168,7 +175,8 @@
                     </form>
                 </div>
             </div>
-            {% else %}
+            {% endif %}
+            {% if ignore %}
             <div class="row">
                 <div class="col-12">
                     <p class="text-muted mb-5">There are currently no reviews of this product.</p>
