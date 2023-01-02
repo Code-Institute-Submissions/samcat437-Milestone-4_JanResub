@@ -68,7 +68,7 @@
                                     </td>
                                     <td>${{ order.grand_total }}</td>
                                     <td>
-                                        <a class="text-muted text-lg-right" href="{% url 'add_review' item.product.id %}">Add Review</a>
+                                        <a class="btn btn-black rounded-0 text-uppercase" href="{% url 'add_review' item.product.id %}">Add Review</a>
                                     </td>
                                     {% endfor %}
                                 </tr>
@@ -76,6 +76,8 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
+            <div class="col-12">
                 <p><a class="text-muted" href="{% url 'wishlist' %}">My Wishlist</a></p>
                 {% if wishlist_items %}
                 <div class="order-history table-responsive">
@@ -84,8 +86,8 @@
                             <tr>
                                 <th></th>
                                 <th>Product</th>
-                                <th>SKU:</th>
                                 <th>Price</th>
+                                <th>Quantity</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -104,19 +106,49 @@
                                 </td>
                                 <td>
                                     <p class="my-0"><strong>{{ product.name }}</strong></p>
-                                </td>
-                                <td>
-                                    <p class="my-0 small text-muted">{{ product.sku|upper }}</p>
+                                    <p class="my-0 small text-muted">SKU: {{ product.sku|upper }}</p>
                                 </td>
                                 <td>
                                     <p class="my-0">${{ product.price }}</p>
                                 </td>
                                 <td>
-                                    <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
-                                        {% csrf_token %}
-                                        <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add to Bag">
-                                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                                    </form>
+                                    <div class="col-12" style="padding-left: 0;">
+                                        <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
+                                            {% csrf_token %}
+                                            <div class="form-row">
+                                                <div class="col-6">
+                                                    <div class="form-group w-50">
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <button class="decrement-qty btn btn-black rounded-0"
+                                                                    data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
+                                                                    <span class="icon">
+                                                                        <i class="fas fa-minus"></i>
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                            <input class="form-control qty_input" type="number"
+                                                                name="quantity" value="1" min="1" max="99"
+                                                                data-item_id="{{ product.id }}"
+                                                                id="id_qty_{{ product.id }}">
+                                                            <div class="input-group-append">
+                                                                <button class="increment-qty btn btn-black rounded-0" 
+                                                                    data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
+                                                                    <span class="icon">
+                                                                        <i class="fas fa-plus"></i>
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add to Bag">
+                                                </div>
+                                                <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                            </div>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                             {% endfor %}
@@ -128,6 +160,8 @@
                     <p class="my-0 small text-muted">You haven't added any items to your wishlist yet.</p>
                 </div>
                 {% endif %}
+            </div>
+            <div class="col-12">
                 <p><a class="text-muted" href="{% url 'reviews' %}">My Reviews</a></p>
                 <div class="order-history table-responsive">
                     <table class="table table-sm table-borderless">
@@ -177,4 +211,5 @@
 {% block postloadjs %}
     {{ block.super }}
     <script type="text/javascript" src="{% static 'profiles/js/countryfield.js' %}"></script>
+    {% include 'products/includes/quantity_input_script.html' %}
 {% endblock %}

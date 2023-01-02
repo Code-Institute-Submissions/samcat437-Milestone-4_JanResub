@@ -70,7 +70,7 @@ def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     reviews = Reviews.objects.filter(product=product_id)
     orders = OrderLineItem.objects.filter(product=product_id).exists()
-
+    
     if request.method == 'POST':
         new_form = Reviews.objects.filter(user=user)
         user_id = request.user
