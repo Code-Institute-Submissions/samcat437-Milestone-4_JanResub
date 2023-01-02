@@ -117,7 +117,7 @@
                                             {% csrf_token %}
                                             <div class="form-row">
                                                 <div class="col-6">
-                                                    <div class="form-group w-50">
+                                                    <div class="form-group w-10">
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
                                                                 <button class="decrement-qty btn btn-black rounded-0"
@@ -143,7 +143,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
-                                                    <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add to Bag">
+                                                    <input type="submit" class="btn btn-black rounded-0 text-uppercase" value="Add to Bag">
                                                 </div>
                                                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
                                             </div>
