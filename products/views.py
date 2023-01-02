@@ -9,6 +9,7 @@ from reviews.models import Reviews
 from profiles.models import UserProfile
 from .forms import ProductForm
 from reviews.forms import ReviewForm
+from checkout.models import OrderLineItem
 
 # Create your views here.
 
@@ -68,6 +69,7 @@ def product_detail(request, product_id):
     user = get_object_or_404(UserProfile, user=request.user)
     product = get_object_or_404(Product, pk=product_id)
     reviews = Reviews.objects.filter(product=product_id)
+    orders = OrderLineItem.objects.filter(product=product_id).exists()
 
     if request.method == 'POST':
         new_form = Reviews.objects.filter(user=user)
@@ -88,7 +90,8 @@ def product_detail(request, product_id):
     context = {
         'form': form,
         'product': product,
-        'review_items': reviews
+        'review_items': reviews,
+        'order_match': orders
     }
 
     return render(request, 'products/product_detail.html', context)

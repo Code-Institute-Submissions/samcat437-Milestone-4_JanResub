@@ -26,7 +26,6 @@ def add_review(request, item_id):
     
     user = get_object_or_404(UserProfile, user=request.user)
     product = get_object_or_404(Product, pk=item_id)
-
     if request.method == 'POST':
         user = get_object_or_404(UserProfile, user=request.user)
         new_form = Reviews.objects.filter(user=user)

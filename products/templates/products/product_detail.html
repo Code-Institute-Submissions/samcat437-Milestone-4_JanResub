@@ -148,7 +148,8 @@
                             {% endfor %}
                         </table>
                     </div>
-            {% else %}
+                {% endif %}
+            {% if order_match %}
             <div class="row">
                 <div class="col-12">
                     <p class="text-muted">Please fill out the form below to submit your product review.</p>
@@ -162,10 +163,16 @@
                             {% endif %}
                         {% endfor %}
                         <div class="text-right mb-5">
-                            <a class="btn btn-outline-black rounded-0" href="{% url 'profile' %}">Cancel</a>
+                            <a class="btn btn-outline-black rounded-0" href="{% url 'product_detail' product.id %}">Cancel</a>
                             <button class="btn btn-black rounded-0" type="submit">Add Review</button>
                         </div>
                     </form>
+                </div>
+            </div>
+            {% else %}
+            <div class="row">
+                <div class="col-12">
+                    <p class="text-muted mb-5">There are currently no reviews of this product.</p>
                 </div>
             </div>
             {% endif %}

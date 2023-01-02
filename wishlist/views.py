@@ -25,8 +25,6 @@ def wishlist(request):
             'wishlist_items': True,
             'products': items
         }
-        print(items)
-        print(1)
         return render(request, template, context)
     
     else:

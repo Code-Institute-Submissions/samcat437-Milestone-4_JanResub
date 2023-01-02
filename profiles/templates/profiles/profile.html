@@ -68,7 +68,7 @@
                                     </td>
                                     <td>${{ order.grand_total }}</td>
                                     <td>
-                                        <div class="col-8"><a class="text-muted text-lg-right" href="{% url 'add_review' item.product.id %}">Add Review</a></div>
+                                        <a class="text-muted text-lg-right" href="{% url 'add_review' item.product.id %}">Add Review</a>
                                     </td>
                                     {% endfor %}
                                 </tr>
@@ -93,9 +93,13 @@
                             <tr>
                                 <td class="p-3 w-25">
                                     {% if product.image %}
-                                    <img class="img-fluid rounded" src="{{ product.image.url }}" alt="{{ product.name }}">
+                                    <a href="{% url 'product_detail' product.id %}">
+                                        <img class="img-fluid rounded" src="{{ product.image.url }}" alt="{{ product.name }}">
+                                    </a>
                                     {% else %}
-                                    <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                                    <a href="{% url 'product_detail' product.id %}">
+                                        <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                                    </a>
                                     {% endif %}
                                 </td>
                                 <td>
@@ -106,6 +110,13 @@
                                 </td>
                                 <td>
                                     <p class="my-0">${{ product.price }}</p>
+                                </td>
+                                <td>
+                                    <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add to Bag">
+                                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                    </form>
                                 </td>
                             </tr>
                             {% endfor %}
