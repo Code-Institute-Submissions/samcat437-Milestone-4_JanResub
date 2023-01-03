@@ -17,7 +17,6 @@ def profile(request):
     profile = get_object_or_404(UserProfile, user=request.user)
     user = get_object_or_404(UserProfile, user=request.user)
     review = Reviews.objects.filter(user=user)
-    wishlist = Wishlist.objects.filter(user=user)
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)
@@ -28,15 +27,14 @@ def profile(request):
             messages.error(request, 'Update failed. Please ensure the form is valid.')
     else:
         form = UserProfileForm(instance=profile)
-    
     orders = profile.orders.all()
 
     items = []
-    wishlist = Wishlist.objects.filter(user=user)
-    wishlist_owner = wishlist[0]
-    wishlist_exists = WishlistItem.objects.filter(wishlist=wishlist_owner).exists()
+    wishlist_exists = Wishlist.objects.filter(user=user).exists()
 
     if wishlist_exists:
+        wishlist = Wishlist.objects.filter(user=user)
+        wishlist_owner = wishlist[0]
         user_wishlist = get_list_or_404(WishlistItem, wishlist=wishlist_owner)
         items = Product.objects.filter(wishlist=wishlist_owner)
 

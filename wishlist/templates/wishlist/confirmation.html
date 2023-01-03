@@ -18,9 +18,9 @@
                 <h2 class="logo-font mb-4">Delete</h2>
                 <hr>
                 <p>Are you sure you want to delete this item from your wishlist?</p>
-                <form method="POST" action="{% url 'delete_wishlist' product.id %}">
+                <form method="POST" action="{% url 'delete_wishlist' product.id %}" class="my-5">
                     {% csrf_token %}
-                    <a class="btn btn-outline-black rounded-0" href="{% url 'wishlist' %}">Cancel</a>
+                    <a class="btn btn-outline-black rounded-0 mr-5" href="{% url 'wishlist' %}">Cancel</a>
                     <button class="btn btn-outline-black rounded-0" type="submit">Delete</button>
                 </form>
             </div>
