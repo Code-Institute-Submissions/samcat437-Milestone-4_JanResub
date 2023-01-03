@@ -16,6 +16,10 @@ body {
     border: 1px solid!important;
 }
 
+/* not working */
+.navbar-nav .nav-link .list-inline-item nav li a {
+    background-color: red;
+}
 
 /* from Bulma */
 .icon {
@@ -290,14 +294,20 @@ a.category-badge > span.badge:hover {
 /* pad the top a bit when navbar is collapsed on mobile */
 @media (max-width: 991px) {
     .header-container {
-        padding-top: 116px;
+        padding-top: 300px;
     }
 
     body {
-        height: calc(100vh - 116px);
+        height: calc(100vh - 300px);
     }
 }
 
-@media (max-width: 600px) {
-   
+@media (max-width: 425px) {
+    body {
+        position: fixed;
+    }
+
+    .list-inline-item {
+        width: 25%;
+    }
 }

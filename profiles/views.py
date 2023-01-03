@@ -7,14 +7,13 @@ from reviews.models import Reviews
 from wishlist.models import Wishlist, WishlistItem
 from products.models import Product
 from .forms import UserProfileForm
-
-from checkout.models import Order
+from checkout.models import Order, OrderLineItem
 
 
 @login_required
 def profile(request):
     """ Display the user's profile. """
-    
+   
     profile = get_object_or_404(UserProfile, user=request.user)
     user = get_object_or_404(UserProfile, user=request.user)
     review = Reviews.objects.filter(user=user)
@@ -29,10 +28,10 @@ def profile(request):
             messages.error(request, 'Update failed. Please ensure the form is valid.')
     else:
         form = UserProfileForm(instance=profile)
+    
     orders = profile.orders.all()
 
     items = []
-    user = get_object_or_404(UserProfile, user=request.user)
     wishlist = Wishlist.objects.filter(user=user)
     wishlist_owner = wishlist[0]
     wishlist_exists = WishlistItem.objects.filter(wishlist=wishlist_owner).exists()

@@ -26,6 +26,10 @@ def add_review(request, item_id):
     
     user = get_object_or_404(UserProfile, user=request.user)
     product = get_object_or_404(Product, pk=item_id)
+    review = Reviews.objects.filter(user=user)
+    reviews = Reviews.objects.filter(product=item_id)
+    this_review = reviews.filter(user=user).exists()
+
     if request.method == 'POST':
         user = get_object_or_404(UserProfile, user=request.user)
         new_form = Reviews.objects.filter(user=user)
@@ -42,11 +46,13 @@ def add_review(request, item_id):
             messages.error(request, 'Your review submission failed. Please ensure the form is valid.')
     else:
         form = ReviewForm()
-
+    
     template = 'reviews/add_review.html'
     context = {
         'form': form,
-        'product': product
+        'product': product,
+        'review_items': review,
+        'already_reviewed': this_review
     }
 
     return render(request, template, context)

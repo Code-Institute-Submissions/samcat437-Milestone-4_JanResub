@@ -32,7 +32,7 @@
                     <button class="btn btn-black rounded-0 text-uppercase float-right">Update Information</button>
                 </form>
             </div>
-            <div class="col-12 col-lg-6">
+            <div class="col-12 col-xl-6">
                 <div class="row">
                     <div class="col-4"><p class="text-muted">Order History</p></div>
                 </div>                
@@ -80,7 +80,7 @@
             <div class="col-12">
                 <p><a class="text-muted" href="{% url 'wishlist' %}">My Wishlist</a></p>
                 {% if wishlist_items %}
-                <div class="order-history table-responsive">
+                <div>
                     <table class="table table-sm table-borderless">
                         <thead>
                             <tr>
@@ -156,14 +156,14 @@
                     </table>
                 </div>
                 {% else %}
-                <div class="order-history table-responsive">
+                <div class="col-12">
                     <p class="my-0 small text-muted">You haven't added any items to your wishlist yet.</p>
                 </div>
                 {% endif %}
             </div>
             <div class="col-12">
                 <p><a class="text-muted" href="{% url 'reviews' %}">My Reviews</a></p>
-                <div class="order-history table-responsive">
+                <div>
                     <table class="table table-sm table-borderless">
                         <thead>
                             <tr>
@@ -199,7 +199,7 @@
                                 </td>
                                 <td>
                                     <small class="ml-3">
-                                        <a href="{% url 'edit_review' item.id %}">Edit</a> |
+                                        <a href="{% url 'edit_review' item.id %}">Edit</a>
                                         <a class="text-danger" href="{% url 'delete_review' item.id %}">Delete</a>
                                     </small>
                                 </td>
