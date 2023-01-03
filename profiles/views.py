@@ -36,7 +36,7 @@ def profile(request):
         wishlist = Wishlist.objects.filter(user=user)
         wishlist_owner = wishlist[0]
         user_wishlist = get_list_or_404(WishlistItem, wishlist=wishlist_owner)
-        items = Product.objects.filter(wishlist=wishlist_owner)
+        wishlist_items = Product.objects.filter(wishlist=wishlist_owner)
 
         template = 'profiles/profile.html'
         context = {
@@ -45,15 +45,17 @@ def profile(request):
             'on_profile_page': True,
             'review_items': review,
             'wishlist_items': True,
-            'products': items
+            'products': wishlist_items
         }
 
         return render(request, template, context)
 
     else:
+        template = 'profiles/profile.html'
         context = {
             'wishlist_items': False,
         }
+    return render(request, template, context)
         
 
 def order_history(request, order_number):

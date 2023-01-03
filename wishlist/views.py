@@ -12,10 +12,10 @@ def wishlist(request):
     """ A view to return the wishlist page """
     items = []
     user = get_object_or_404(UserProfile, user=request.user)
+    wishlist = Wishlist.objects.filter(user=user)
     wishlist_exists = Wishlist.objects.filter(user=user).exists()
-    
+
     if wishlist_exists:
-        wishlist = Wishlist.objects.filter(user=user)
         wishlist_owner = wishlist[0]
         user_wishlist = get_list_or_404(WishlistItem, wishlist=wishlist_owner)
         items = Product.objects.filter(wishlist=wishlist_owner)
@@ -31,6 +31,7 @@ def wishlist(request):
         context = {
             'wishlist_items': False,
         }
+    
     return render(request, 'wishlist/wishlist.html', context)
 
 
@@ -80,7 +81,13 @@ def delete_wishlist_confirmation(request, item_id):
 def delete_wishlist(request, item_id):
     """ Delete a wishlist item from the wishlist """
 
-    item = get_object_or_404(WishlistItem, product=item_id)
-    item.delete()
+    user = get_object_or_404(UserProfile, user=request.user)
+    wishlist = Wishlist.objects.get_or_create(user=user)
+    wishlist_owner = wishlist[0]
+    item = get_object_or_404(Product, pk=item_id)
+    product = WishlistItem.objects.get(product=item)
+    print(product)
+    product.delete()
+    wishlist.delete()
     messages.success(request, 'Item deleted from your wishlist!')
     return redirect(reverse('wishlist'))
