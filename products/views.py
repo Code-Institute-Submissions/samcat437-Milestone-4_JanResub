@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404, get_list_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
@@ -9,7 +9,7 @@ from reviews.models import Reviews
 from profiles.models import UserProfile
 from .forms import ProductForm
 from reviews.forms import ReviewForm
-from checkout.models import OrderLineItem
+from checkout.models import Order, OrderLineItem
 
 # Create your views here.
 
@@ -66,12 +66,35 @@ def all_products(request):
 def product_detail(request, product_id):
     """ A view to show individual product details, generate product review or form to fill out review """
 
+    # user that is logged in
     user = get_object_or_404(UserProfile, user=request.user)
+    
+    # product on the page
     product = get_object_or_404(Product, pk=product_id)
+
+    # reviews for the product of any user
     reviews = Reviews.objects.filter(product=product_id)
-    orders = OrderLineItem.objects.filter(product=product_id).exists()
+    # review(s) of any user
+    reviewed = reviews.filter(product=product_id).exists()
+
+    # if the review for user logged in exists
     this_review = reviews.filter(user=user).exists()
-    ignore = True
+
+    # orders of the logged in user
+    user_orders = Order.objects.filter(user_profile=user)
+    orders = Order.objects.filter(user_profile=user).exists()
+    
+    # order(s) for that item 
+    order = OrderLineItem.objects.filter(product=product_id)
+
+    for user_order in user_orders:
+        for o in order:
+            if str(user_order) in str(o):
+                orders = True
+                print(orders)
+            else:
+                orders = False
+                print(orders)
 
     if request.method == 'POST':
         new_form = Reviews.objects.filter(user=user)
@@ -89,17 +112,23 @@ def product_detail(request, product_id):
     else:
         form = ReviewForm()
 
-    if this_review is True:
-        orders = False
+    ignore = True
 
-    if this_review is True and orders is False:
+    if reviewed:
         ignore = False
+
+    if this_review:
+        orders = False
+        ignore = False
+        if orders is True:
+            ignore = False
 
     context = {
         'form': form,
         'product': product,
         'review_items': reviews,
         'order_match': orders,
+        'reviewed': ignore,
         'already_reviewed': this_review,
         'ignore': ignore
     }

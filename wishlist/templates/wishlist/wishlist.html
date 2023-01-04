@@ -24,6 +24,7 @@
         <div class="row">
             <div class="col">
                 {% if wishlist_items %}
+                {% for product in products %}
                 <div">
                     <table class="table table-sm table-borderless">
                         <thead class="text-black">
@@ -33,7 +34,6 @@
                                 <th scope="col">Price</th>
                             </tr>
                         </thead>
-                        {% for product in products %}
                             <tr>
                                 <td class="p-3 w-25">
                                     {% if product.image %}

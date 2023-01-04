@@ -33,36 +33,31 @@ def profile(request):
     wishlist_exists = Wishlist.objects.filter(user=user).exists()
     wishlist_owner = wishlist[0]
     wishlistitems_exist = WishlistItem.objects.filter(wishlist=wishlist_owner).exists()
+  
+    if wishlist_exists:
+        if wishlistitems_exist:
+            wishlist_items = Product.objects.filter(wishlist=wishlist_owner)
 
-    if wishlistitems_exist:
-        
-        template = 'profiles/profile.html'
-        context = {
-            'wishlist_items': False,
-        }
-        return render(request, template, context)
-        
-    elif wishlist_exists:
-        wishlist_items = Product.objects.filter(wishlist=wishlist_owner)
-
-        template = 'profiles/profile.html'
-        context = {
-            'form': form,
-            'orders': orders,
-            'on_profile_page': True,
-            'review_items': review,
-            'wishlist_items': True,
-            'products': wishlist_items
-        }
-
-        return render(request, template, context)
-    else:
-        template = 'profiles/profile.html'
-        context = {
-            'wishlist_items': False,
-        }
-    
-    return render(request, template, context)
+            template = 'profiles/profile.html'
+            context = {
+                'form': form,
+                'orders': orders,
+                'on_profile_page': True,
+                'review_items': review,
+                'wishlist_items': True,
+                'products': wishlist_items
+            }
+            return render(request, template, context)
+        else:
+            template = 'profiles/profile.html'
+            context = {
+                'form': form,
+                'orders': orders,
+                'on_profile_page': True,
+                'review_items': review,
+                'wishlist_items': False
+            }
+            return render(request, template, context)
         
 
 def order_history(request, order_number):

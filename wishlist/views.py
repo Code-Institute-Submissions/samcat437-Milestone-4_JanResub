@@ -16,24 +16,23 @@ def wishlist(request):
     wishlist_exists = Wishlist.objects.filter(user=user).exists()
     wishlist_owner = wishlist[0]
     wishlistitems_exist = WishlistItem.objects.filter(wishlist=wishlist_owner).exists()
+  
+    if wishlist_exists:
+        if wishlistitems_exist:
+            items = Product.objects.filter(wishlist=wishlist_owner)
 
-    if wishlist_exists:       
-        items = Product.objects.filter(wishlist=wishlist_owner)
-
-        template = 'wishlist/wishlist.html'
-        context = {
-            'wishlist_items': True,
-            'products': items
-        }
-        return render(request, template, context)
-    
-    else:
-        context = {
-            'wishlist_items': False,
-        }
-    
-    print(wishlist_exists)
-    return render(request, 'wishlist/wishlist.html', context)
+            template = 'wishlist/wishlist.html'
+            context = {
+                'wishlist_items': True,
+                'products': items
+            }
+            return render(request, template, context)
+        else: 
+            template = 'wishlist/wishlist.html'
+            context = {
+                'wishlist_items': False,
+            }
+            return render(request, template, context)
 
 
 @login_required
