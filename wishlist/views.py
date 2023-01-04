@@ -10,14 +10,14 @@ from products.models import Product
 @login_required
 def wishlist(request):
     """ A view to return the wishlist page """
-    items = []
+
     user = get_object_or_404(UserProfile, user=request.user)
     wishlist = Wishlist.objects.filter(user=user)
     wishlist_exists = Wishlist.objects.filter(user=user).exists()
+    wishlist_owner = wishlist[0]
+    wishlistitems_exist = WishlistItem.objects.filter(wishlist=wishlist_owner).exists()
 
-    if wishlist_exists:
-        wishlist_owner = wishlist[0]
-        user_wishlist = get_list_or_404(WishlistItem, wishlist=wishlist_owner)
+    if wishlist_exists:       
         items = Product.objects.filter(wishlist=wishlist_owner)
 
         template = 'wishlist/wishlist.html'
@@ -32,8 +32,8 @@ def wishlist(request):
             'wishlist_items': False,
         }
     
+    print(wishlist_exists)
     return render(request, 'wishlist/wishlist.html', context)
-
 
 
 @login_required
@@ -86,8 +86,9 @@ def delete_wishlist(request, item_id):
     wishlist_owner = wishlist[0]
     item = get_object_or_404(Product, pk=item_id)
     product = WishlistItem.objects.get(product=item)
-    print(product)
+    products = get_list_or_404(WishlistItem, wishlist=wishlist_owner)
+    product_number = len(products)
+    
     product.delete()
-    wishlist.delete()
     messages.success(request, 'Item deleted from your wishlist!')
     return redirect(reverse('wishlist'))

@@ -29,13 +29,20 @@ def profile(request):
         form = UserProfileForm(instance=profile)
     orders = profile.orders.all()
 
-    items = []
+    wishlist = Wishlist.objects.filter(user=user)
     wishlist_exists = Wishlist.objects.filter(user=user).exists()
+    wishlist_owner = wishlist[0]
+    wishlistitems_exist = WishlistItem.objects.filter(wishlist=wishlist_owner).exists()
 
-    if wishlist_exists:
-        wishlist = Wishlist.objects.filter(user=user)
-        wishlist_owner = wishlist[0]
-        user_wishlist = get_list_or_404(WishlistItem, wishlist=wishlist_owner)
+    if wishlistitems_exist:
+        
+        template = 'profiles/profile.html'
+        context = {
+            'wishlist_items': False,
+        }
+        return render(request, template, context)
+        
+    elif wishlist_exists:
         wishlist_items = Product.objects.filter(wishlist=wishlist_owner)
 
         template = 'profiles/profile.html'
@@ -49,12 +56,12 @@ def profile(request):
         }
 
         return render(request, template, context)
-
     else:
         template = 'profiles/profile.html'
         context = {
             'wishlist_items': False,
         }
+    
     return render(request, template, context)
         
 
