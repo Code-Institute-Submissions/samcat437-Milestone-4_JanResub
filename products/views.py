@@ -87,6 +87,21 @@ def product_detail(request, product_id):
     # order(s) for that item 
     order = OrderLineItem.objects.filter(product=product_id)
 
+    ignore = True
+
+    if reviewed:
+        ignore = False
+
+    if this_review:
+        orders = False
+        ignore = False
+        if orders is True:
+            ignore = False
+
+    if ignore is True:
+        orders = False
+
+
     for user_order in user_orders:
         for o in order:
             if str(user_order) in str(o):
@@ -111,17 +126,6 @@ def product_detail(request, product_id):
             messages.error(request, 'Your review submission failed. Please ensure the form is valid.')
     else:
         form = ReviewForm()
-
-    ignore = True
-
-    if reviewed:
-        ignore = False
-
-    if this_review:
-        orders = False
-        ignore = False
-        if orders is True:
-            ignore = False
 
     context = {
         'form': form,
