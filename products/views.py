@@ -66,76 +66,80 @@ def product_detail(request, product_id):
     """ A view to show individual product details, generate product review or form to fill out review """
 
     product = get_object_or_404(Product, pk=product_id)
+    reviews = Reviews.objects.filter(product=product_id)
     no_reviews = True
 
     if request.user.is_anonymous:
-        context = {
-        'product': product,
-        'no_reviews': no_reviews
+        if reviews:
+            no_reviews = False
+    context = {
+            'product': product,
+            'no_reviews': no_reviews,
+            'review_items': reviews
     }
 
     return render(request, 'products/product_detail.html', context)
 
-    # orders of the logged in user
-    user = get_object_or_404(UserProfile, user=request.user)
-    user_orders = Order.objects.filter(user_profile=user)
-    orders = Order.objects.filter(user_profile=user).exists()
-    # order(s) for that item 
-    order = OrderLineItem.objects.filter(product=product_id)
+    if request.user:
+        user = get_object_or_404(UserProfile, user=request.user)
+        user_orders = Order.objects.filter(user_profile=user)
+        orders = Order.objects.filter(user_profile=user).exists()
+        # order(s) for that item 
+        order = OrderLineItem.objects.filter(product=product_id)
 
-    for user_order in user_orders:
-        for o in order:
-            if str(user_order) in str(o):
-                orders = True
-            else:
-                orders = False
+        for user_order in user_orders:
+            for o in order:
+                if str(user_order) in str(o):
+                    orders = True
+                else:
+                    orders = False
 
-    # reviews for the product of any user
-    reviews = Reviews.objects.filter(product=product_id)
-    # review(s) of any user
-    reviewed = reviews.filter(product=product_id).exists()
-    # if the review for user logged in exists
-    this_review = reviews.filter(user=user).exists()
+        # reviews for the product of any user
+        reviews = Reviews.objects.filter(product=product_id)
+        # review(s) of any user
+        reviewed = reviews.filter(product=product_id).exists()
+        # if the review for user logged in exists
+        this_review = reviews.filter(user=user).exists()
 
-    no_reviews = True
-    if reviewed:
-        no_reviews = False
-
-    if this_review:
-        orders = False
-        no_reviews = False
-        if orders is True:
+        no_reviews = True
+        if reviewed:
             no_reviews = False
 
-    if no_reviews is True:
-        orders = False
+        if this_review:
+            orders = False
+            no_reviews = False
+            if orders is True:
+                no_reviews = False
+
+        if no_reviews is True:
+            orders = False
    
-    if request.method == 'POST':
-        new_form = Reviews.objects.filter(user=user)
-        user_id = request.user
-        form = ReviewForm(request.POST, request.FILES)
-        if form.is_valid():
-            new_form = form.save(commit=False)
-            new_form.user = user
-            new_form.product = product
-            new_form.save()
-            messages.success(request, 'Successfully added review!')
-            return redirect(reverse('reviews'))
+        if request.method == 'POST':
+            new_form = Reviews.objects.filter(user=user)
+            user_id = request.user
+            form = ReviewForm(request.POST, request.FILES)
+            if form.is_valid():
+                new_form = form.save(commit=False)
+                new_form.user = user
+                new_form.product = product
+                new_form.save()
+                messages.success(request, 'Successfully added review!')
+                return redirect(reverse('reviews'))
+            else:
+                messages.error(request, 'Your review submission failed. Please ensure the form is valid.')
         else:
-            messages.error(request, 'Your review submission failed. Please ensure the form is valid.')
-    else:
-        form = ReviewForm()
+            form = ReviewForm()
 
-    context = {
-        'form': form,
-        'product': product,
-        'review_items': reviews,
-        'order_match': orders,
-        'already_reviewed': this_review,
-        'no_reviews': no_reviews
-    }
+        context = {
+            'form': form,
+            'product': product,
+            'review_items': reviews,
+            'order_match': orders,
+            'already_reviewed': this_review,
+            'no_reviews': no_reviews
+        }
 
-    return render(request, 'products/product_detail.html', context)
+        return render(request, 'products/product_detail.html', context)
 
 
 @login_required
