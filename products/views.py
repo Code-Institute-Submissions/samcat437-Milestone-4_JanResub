@@ -11,7 +11,6 @@ from .forms import ProductForm
 from reviews.forms import ReviewForm
 from checkout.models import Order, OrderLineItem
 
-# Create your views here.
 
 def all_products(request):
     """ A view to show all products, including sorting and search queries """
@@ -36,7 +35,7 @@ def all_products(request):
                 if direction == 'desc':
                     sortkey = f'-{sortkey}'
             products = products.order_by(sortkey)
-            
+           
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
             products = products.filter(category__name__in=categories)
@@ -47,7 +46,7 @@ def all_products(request):
             if not query:
                 messages.error(request, "You didn't enter any search criteria!")
                 return redirect(reverse('products'))
-            
+           
             queries = Q(name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)
 
@@ -66,25 +65,21 @@ def all_products(request):
 def product_detail(request, product_id):
     """ A view to show individual product details, generate product review or form to fill out review """
 
-    # user that is logged in
-    user = get_object_or_404(UserProfile, user=request.user)
-    
-    # product on the page
     product = get_object_or_404(Product, pk=product_id)
+    no_reviews = True
 
-    # reviews for the product of any user
-    reviews = Reviews.objects.filter(product=product_id)
-    review_list = get_list_or_404(Reviews, product=product_id)
-    # review(s) of any user
-    reviewed = reviews.filter(product=product_id).exists()
+    if request.user.is_anonymous:
+        context = {
+        'product': product,
+        'no_reviews': no_reviews
+    }
 
-    # if the review for user logged in exists
-    this_review = reviews.filter(user=user).exists()
+    return render(request, 'products/product_detail.html', context)
 
     # orders of the logged in user
+    user = get_object_or_404(UserProfile, user=request.user)
     user_orders = Order.objects.filter(user_profile=user)
     orders = Order.objects.filter(user_profile=user).exists()
-   
     # order(s) for that item 
     order = OrderLineItem.objects.filter(product=product_id)
 
@@ -95,19 +90,26 @@ def product_detail(request, product_id):
             else:
                 orders = False
 
-    ignore = True
+    # reviews for the product of any user
+    reviews = Reviews.objects.filter(product=product_id)
+    # review(s) of any user
+    reviewed = reviews.filter(product=product_id).exists()
+    # if the review for user logged in exists
+    this_review = reviews.filter(user=user).exists()
+
+    no_reviews = True
     if reviewed:
-        ignore = False
+        no_reviews = False
 
     if this_review:
         orders = False
-        ignore = False
+        no_reviews = False
         if orders is True:
-            ignore = False
+            no_reviews = False
 
-    if ignore is True:
+    if no_reviews is True:
         orders = False
-
+   
     if request.method == 'POST':
         new_form = Reviews.objects.filter(user=user)
         user_id = request.user
@@ -129,9 +131,8 @@ def product_detail(request, product_id):
         'product': product,
         'review_items': reviews,
         'order_match': orders,
-        'reviewed': ignore,
         'already_reviewed': this_review,
-        'ignore': ignore
+        'no_reviews': no_reviews
     }
 
     return render(request, 'products/product_detail.html', context)
@@ -154,7 +155,7 @@ def add_product(request):
             messages.error(request, 'Failed to add product. Please ensure the form is valid.')
     else:
         form = ProductForm()
-        
+       
     template = 'products/add_product.html'
     context = {
         'form': form,
