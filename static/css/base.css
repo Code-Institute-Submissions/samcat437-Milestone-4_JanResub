@@ -292,7 +292,7 @@ a.category-badge > span.badge:hover {
 }
 
 /* pad the top a bit when navbar is collapsed on mobile */
-@media (max-width: 991px) {
+@media (max-width: 768px) {
     .header-container {
         padding-top: 300px;
     }
@@ -303,9 +303,6 @@ a.category-badge > span.badge:hover {
 }
 
 @media (max-width: 425px) {
-    body {
-        position: fixed;
-    }
 
     .list-inline-item {
         width: 25%;

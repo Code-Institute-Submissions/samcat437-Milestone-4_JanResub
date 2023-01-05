@@ -122,40 +122,45 @@
                                         <th scope="col">{{ item.user }}</th>
                                     </tr>
                                 </thead>
-                                <tr>
-                                    <td class="py-3">
-                                        <p class="my-0"><strong>{{ item.product.name }}</strong></p>
-                                        <p class="my-0 small text-muted">SKU: {{ item.product.sku|upper }}</p>
-                                    </td>
-                                    <td class="py-3">
-                                        <p class="my-0">${{ item.product.price }}</p>
-                                    </td>
-                                </tr>
-                                <tr class="mb-5">
-                                    <td class="py-3 box">
-                                        <p class="mb-0">{{ item.review }}</p>
-                                    </td>
-                                </tr>
-                                {% if item.user == request.user %}
-                                <tr>
-                                   <td class="py-3">
-                                        <small>
-                                            <a href="{% url 'edit_review' item.id %}">Edit</a> |
-                                            <a class="text-danger" href="{% url 'delete_review_confirmation' item.id %}">Delete</a>
-                                        </small>
-                                    </td>
-                                </tr>
-                                {% endif %}
+                                <tbody>
+                                    <tr>
+                                        <td class="py-3">
+                                            <p class="my-0"><strong>{{ item.product.name }}</strong></p>
+                                            <p class="my-0 small text-muted">SKU: {{ item.product.sku|upper }}</p>
+                                        </td>
+                                        <td class="py-3">
+                                            <p class="my-0">${{ item.product.price }}</p>
+                                        </td>
+                                    </tr>
+                                    <tr class="mb-5">
+                                        <td class="py-3 box">
+                                            <p class="mb-0">{{ item.review }}</p>
+                                        </td>
+                                    </tr>
                             {% endfor %}
-                        </table>
-                    </div>
-                {% endif %}
-            {% if already_reviewed %}
-            <div class="row">
-                <div class="col-12">
-                    <p class="text-muted mb-5">Please edit or delete to your change your previous review.</p>
+                            {% if already_reviewed %}
+                            <tr>
+                                <td>
+                                    <p class="text-muted mb-5">Edit or delete your review here.</p>
+                                </td>
+                                {% for item in review_items %}
+                                    {% if review_match|length > 0 %}
+                                        {% if review_match %}
+                                            <td class="py-3">
+                                                <small>
+                                                    {{ i }}
+                                                    <a href="{% url 'edit_review' item.id %}">Edit</a>
+                                                    <a class="text-danger" href="{% url 'delete_review_confirmation' item.id %}">Delete</a>
+                                                </small>
+                                            </td>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
                 </div>
-            </div>
             {% endif %}
             {% if order_match %}
             <div class="row">

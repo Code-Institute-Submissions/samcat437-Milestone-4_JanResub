@@ -58,7 +58,7 @@
                                     <th scope="col">Review</th>
                                 </tr>
                             </thead>
-
+                            <tbody>
                             {% for item in review_items %}
                                 <tr>
                                     <td class="p-3 w-25">
@@ -86,8 +86,14 @@
                                     </td>
                                 </tr>
                             {% endfor %} 
-                        {% endif %}             
+                            </tbody>
+                        </table>
                     </div>
+                    {% else %}
+                    <div class="col-12">
+                        <p class="my-5 text-muted">You haven't reviewed any items yet.</p>
+                    </div>
+                {% endif %}             
             </div>
         </div>
     </div>

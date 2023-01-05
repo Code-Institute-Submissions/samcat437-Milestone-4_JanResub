@@ -33,7 +33,7 @@
                                     <th scope="col">Review</th>
                                 </tr>
                             </thead>
-
+                            <tbody>
                             {% for item in review_items %}
                                 <tr>
                                     <td class="p-3 w-25">
@@ -75,8 +75,9 @@
                                     </a>
                                 </td>
                             </tr>
-                        </table>
-                    </div>
+                        </tbody>
+                    </table>
+                </div>
                 {% else %}
                     <p class="lead mb-5">You haven't written any reviews yet.</p>
                     <a href="{% url 'profile' %}" class="btn btn-outline-black rounded-0 btn-lg">

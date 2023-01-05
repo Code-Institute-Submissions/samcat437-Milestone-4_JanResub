@@ -74,6 +74,7 @@ def product_detail(request, product_id):
 
     # reviews for the product of any user
     reviews = Reviews.objects.filter(product=product_id)
+    review_list = get_list_or_404(Reviews, product=product_id)
     # review(s) of any user
     reviewed = reviews.filter(product=product_id).exists()
 
@@ -83,11 +84,24 @@ def product_detail(request, product_id):
     # orders of the logged in user
     user_orders = Order.objects.filter(user_profile=user)
     orders = Order.objects.filter(user_profile=user).exists()
-    
+   
     # order(s) for that item 
     order = OrderLineItem.objects.filter(product=product_id)
 
     ignore = True
+    for user_order in user_orders:
+        for o in order:
+            if str(user_order) in str(o):
+                orders = True
+            else:
+                orders = False
+
+    review_match = False
+    for review in reviews:
+        print(review.user)
+        if review.user == user:
+            review_match = True
+            print(review_match)
 
     if reviewed:
         ignore = False
@@ -100,16 +114,6 @@ def product_detail(request, product_id):
 
     if ignore is True:
         orders = False
-
-
-    for user_order in user_orders:
-        for o in order:
-            if str(user_order) in str(o):
-                orders = True
-                print(orders)
-            else:
-                orders = False
-                print(orders)
 
     if request.method == 'POST':
         new_form = Reviews.objects.filter(user=user)
@@ -134,6 +138,7 @@ def product_detail(request, product_id):
         'order_match': orders,
         'reviewed': ignore,
         'already_reviewed': this_review,
+        'review_match': review_match,
         'ignore': ignore
     }
 

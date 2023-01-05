@@ -42,10 +42,10 @@
                     <table class="table table-sm table-borderless">
                         <thead>
                             <tr>
-                                <th>Order Number</th>
-                                <th>Date</th>
-                                <th>Items</th>
-                                <th>Order Total</th>
+                                <th scope="col">Order Number</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Items</th>
+                                <th scope="col">Order Total</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -93,13 +93,13 @@
                 <p><a class="text-muted" href="{% url 'wishlist' %}">My Wishlist</a></p>
                 {% if wishlist_items %}
                 {% for product in products %}
-                <div>
+                <div class="table-responsive">
                     <table class="table table-sm table-borderless">
                         <thead>
                             <tr>
-                                <th></th>
-                                <th>Product</th>
-                                <th>Price</th>
+                                <th scope="col"></th>
+                                <th scope="col">Product</th>
+                                <th scope="col">Price</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -181,14 +181,14 @@
             <div class="col-12">
                 <p><a class="text-muted" href="{% url 'reviews' %}">My Reviews</a></p>
                 {% if review_items %}
-                <div>
+                <div class="table-responsive">
                     <table class="table table-sm table-borderless">
                         <thead>
                             <tr>
-                                <th></th>
-                                <th>Product</th>
-                                <th>Price</th>
-                                <th>Review</th>
+                                <th scope="col"></th>
+                                <th scope="col">Product</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Review</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -218,7 +218,7 @@
                                 <td>
                                     <small class="ml-3">
                                         <a href="{% url 'edit_review' item.id %}">Edit</a>
-                                        <a class="text-danger" href="{% url 'delete_review' item.id %}">Delete</a>
+                                        <a class="text-danger" href="{% url 'delete_review_confirmation' item.id %}">Delete</a>
                                     </small>
                                 </td>
                             </tr>
