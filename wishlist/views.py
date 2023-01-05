@@ -23,14 +23,14 @@ def wishlist(request):
 
             template = 'wishlist/wishlist.html'
             context = {
-                'wishlist_items': True,
+                'wishlist_items': items,
                 'products': items
             }
             return render(request, template, context)
         else: 
             template = 'wishlist/wishlist.html'
             context = {
-                'wishlist_items': False,
+                'wishlist_items': items,
             }
             return render(request, template, context)
 

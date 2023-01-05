@@ -23,7 +23,28 @@
         <div class="row">
             <div class="col">
                 {% if review_items %}
-                    <div class="table-responsive rounded">
+                    <div class="d-block d-md-none">
+                        {% for item in review_items %}
+                        <div class="row">
+                            <div class="col-12 col-sm-6 mb-2">
+                                {% include "reviews/product_image.html" %}
+                            </div>
+                            <div class="col-12 col-sm-6 mb-2">
+                                {% include "reviews/product_info.html" %}
+                            </div>
+                            <div class="col-12 col-sm-6 mb-2">
+                                <p class="my-0">${{ item.product.price }}</p>
+                            </div>
+                            <div class="col-12 mb-2">
+                                {% include "reviews/review_content.html" %}
+                            </div>
+                            <div class="col-12 col-sm-6 mb-2 ml-0">
+                                {% include "reviews/edit_and_delete.html" %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="table-responsive rounded d-none d-md-block">
                         <table class="table table-sm table-borderless">
                             <thead class="text-black">
                                 <tr>
@@ -31,37 +52,26 @@
                                     <th scope="col"></th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Review</th>
+                                    <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
                             {% for item in review_items %}
                                 <tr>
                                     <td class="p-3 w-25">
-                                        {% if item.product.image %}
-                                        <a href="{% url 'product_detail' item.product.id %}">
-                                            <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
-                                        </a>
-                                        {% else %}
-                                        <a href="{% url 'product_detail' item.product.id %}">
-                                            <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
-                                        </a>
-                                        {% endif %}
+                                        {% include "reviews/product_image.html" %}
                                     </td>
                                     <td class="py-3">
-                                        <p class="my-0"><strong>{{ item.product.name }}</strong></p>
-                                        <p class="my-0 small text-muted">SKU: {{ item.product.sku|upper }}</p>
+                                        {% include "reviews/product_info.html" %}
                                     </td>
                                     <td class="py-3">
                                         <p class="my-0">${{ item.product.price }}</p>
                                     </td>
                                     <td class="py-3">
-                                        <p class="my-0">{{ item.review }}</p>
+                                        {% include "reviews/review_content.html" %}
                                     </td>
                                     <td class="py-3">
-                                        <small class="ml-3">
-                                            <a href="{% url 'edit_review' item.id %}">Edit</a>
-                                            <a class="text-danger" href="{% url 'delete_review_confirmation' item.id %}">Delete</a>
-                                        </small>
+                                        {% include "reviews/edit_and_delete.html" %}
                                     </td>
                                 </tr>
                             {% endfor %}

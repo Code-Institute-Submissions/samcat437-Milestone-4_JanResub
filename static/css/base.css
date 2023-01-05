@@ -337,7 +337,6 @@ a.category-badge > span.badge:hover {
         padding: .25rem .5rem !important;
     }
 }
-}
 
 @media (max-width: 425px) {
 
@@ -346,4 +345,6 @@ a.category-badge > span.badge:hover {
     }
 }
 
-
+.img-responsive {
+    width:100%;
+}

@@ -44,7 +44,7 @@ def profile(request):
                 'orders': orders,
                 'on_profile_page': True,
                 'review_items': review,
-                'wishlist_items': True,
+                'wishlist_items': wishlist_items,
                 'products': wishlist_items
             }
             return render(request, template, context)

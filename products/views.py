@@ -88,7 +88,6 @@ def product_detail(request, product_id):
     # order(s) for that item 
     order = OrderLineItem.objects.filter(product=product_id)
 
-    ignore = True
     for user_order in user_orders:
         for o in order:
             if str(user_order) in str(o):
@@ -96,13 +95,7 @@ def product_detail(request, product_id):
             else:
                 orders = False
 
-    review_match = False
-    for review in reviews:
-        print(review.user)
-        if review.user == user:
-            review_match = True
-            print(review_match)
-
+    ignore = True
     if reviewed:
         ignore = False
 
@@ -138,7 +131,6 @@ def product_detail(request, product_id):
         'order_match': orders,
         'reviewed': ignore,
         'already_reviewed': this_review,
-        'review_match': review_match,
         'ignore': ignore
     }
 
