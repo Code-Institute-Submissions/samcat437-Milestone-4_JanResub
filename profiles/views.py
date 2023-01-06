@@ -33,12 +33,13 @@ def profile(request):
 
     wishlist = Wishlist.objects.get_or_create(user=user)
     print(wishlist)
+    
+    wishlist_item = WishlistItem.objects.filter(pk=1)
+
     wishlist_exists = Wishlist.objects.filter(user=user).exists()
-    print(wishlist_exists)
     wishlistitems_exist = (
         WishlistItem.objects.filter(wishlist=wishlist[0]).exists()
     )
-    print(wishlistitems_exist)
   
     if wishlist_exists:
         if wishlistitems_exist:

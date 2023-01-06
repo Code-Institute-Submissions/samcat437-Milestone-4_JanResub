@@ -12,9 +12,13 @@ from products.models import Product
 @login_required
 def wishlist(request):
     """ A view to return the wishlist page """
-    print('hi')
+    
     user = get_object_or_404(UserProfile, user=request.user)
     wishlist = Wishlist.objects.get_or_create(user=user)
+    products = Wishlist.objects.filter(pk=1)
+
+    wishlist_item = WishlistItem.objects.filter(pk=1)
+
     wishlist_exists = Wishlist.objects.filter(user=user).exists()
     wishlistitems_exist = (
         WishlistItem.objects.filter(wishlist=wishlist[0]).exists()
