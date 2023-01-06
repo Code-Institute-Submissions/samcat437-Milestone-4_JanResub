@@ -8,7 +8,7 @@ class Wishlist(models.Model):
     A user's list of wished for items
     """
     user = models.ForeignKey(
-        UserProfile, null=False, blank=False, on_delete=models.CASCADE,
+        UserProfile, null=True, blank=False, on_delete=models.CASCADE,
         related_name='wishlist'
     )
     products = models.ManyToManyField(Product, through='WishlistItem')
@@ -19,11 +19,11 @@ class Wishlist(models.Model):
 
 class WishlistItem(models.Model):
     wishlist = models.ForeignKey(
-        Wishlist, null=False, blank=False, on_delete=models.CASCADE,
+        Wishlist, null=True, blank=False, on_delete=models.CASCADE,
         related_name='wishlist_items'
     )
     product = models.ForeignKey(
-        Product, null=False, blank=False, on_delete=models.CASCADE,
+        Product, null=True, blank=False, on_delete=models.CASCADE,
         related_name='wishlist_products'
     )
     date_added = models.DateTimeField(auto_now_add=True)
