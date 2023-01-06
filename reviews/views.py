@@ -43,7 +43,10 @@ def add_review(request, item_id):
             messages.success(request, 'Successfully added review!')
             return redirect(reverse('reviews'))
         else:
-            messages.error(request, 'Your review submission failed. Please ensure the form is valid.')
+            messages.error(
+                request, 'Your review submission failed. Please ensure the \
+                form is valid.'
+            )
     else:
         form = ReviewForm()
     
@@ -73,7 +76,10 @@ def edit_review(request, review_items_id):
             messages.success(request, 'Successfully updated your review!')
             return redirect(reverse('reviews'))
         else:
-            messages.error(request, 'Your review update failed. Please ensure the form is valid.')
+            messages.error(
+                request, 'Your review update failed.\
+                Please ensure the form is valid.'
+            )
     else:
         form = ReviewForm(instance=review)
 
@@ -88,7 +94,8 @@ def edit_review(request, review_items_id):
 
 @login_required
 def delete_review_confirmation(request, item_id):
-    """ Ask the user to confirm deletion of an item from their wishlist via template """
+    """ Ask the user to confirm deletion of an 
+    item from their wishlist via template """
 
     review_item = get_object_or_404(Reviews, pk=item_id)
     template = 'reviews/confirmation.html'

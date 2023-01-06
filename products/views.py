@@ -1,4 +1,6 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404, get_list_or_404
+from django.shortcuts import (
+    render, redirect, reverse, get_object_or_404
+)
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
@@ -44,10 +46,13 @@ def all_products(request):
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
-                messages.error(request, "You didn't enter any search criteria!")
+                messages.error(
+                    request, "You didn't enter any search criteria!"
+                )
                 return redirect(reverse('products'))
            
-            queries = Q(name__icontains=query) | Q(description__icontains=query)
+            queries = Q(
+                name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)
 
     current_sorting = f'{sort}_{direction}'
@@ -63,7 +68,8 @@ def all_products(request):
 
 
 def product_detail(request, product_id):
-    """ A view to show individual product details, generate product review or form to fill out review """
+    """ A view to show individual product details, 
+    generate product review or form to fill out review """
 
     product = get_object_or_404(Product, pk=product_id)
     reviews = Reviews.objects.filter(product=product_id)
@@ -84,9 +90,9 @@ def product_detail(request, product_id):
         user = get_object_or_404(UserProfile, user=request.user)
         user_orders = Order.objects.filter(user_profile=user)
         orders = Order.objects.filter(user_profile=user).exists()
-        # order(s) for that item 
+        # order(s) for that item
         order = OrderLineItem.objects.filter(product=product_id)
-
+        
         for user_order in user_orders:
             for o in order:
                 if str(user_order) in str(o):
@@ -113,7 +119,7 @@ def product_detail(request, product_id):
 
         if no_reviews is True:
             orders = False
-   
+
         if request.method == 'POST':
             new_form = Reviews.objects.filter(user=user)
             user_id = request.user
@@ -126,7 +132,11 @@ def product_detail(request, product_id):
                 messages.success(request, 'Successfully added review!')
                 return redirect(reverse('reviews'))
             else:
-                messages.error(request, 'Your review submission failed. Please ensure the form is valid.')
+                messages.error(
+                    request,
+                    'Your review submission failed. \
+                    Please ensure the form is valid.'
+                )
         else:
             form = ReviewForm()
 
@@ -153,13 +163,16 @@ def add_product(request):
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             product = form.save()
-            messages.success(request, 'Successfully added product!')
+            messages.success(
+                request, 'Successfully added product!'
+            )
             return redirect(reverse('product_detail', args=[product.id]))
         else:
-            messages.error(request, 'Failed to add product. Please ensure the form is valid.')
+            messages.error(request, 'Failed to add product. \
+                Please ensure the form is valid.')
     else:
         form = ProductForm()
-       
+
     template = 'products/add_product.html'
     context = {
         'form': form,
@@ -183,7 +196,10 @@ def edit_product(request, product_id):
             messages.success(request, 'Successfully updated product!')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
-            messages.error(request, 'Failed to update product. Please ensure the form is valid.')
+            messages.error(
+                request, 'Failed to update product. \
+                Please ensure the form is valid.'
+            )
     else:
         form = ProductForm(instance=product)
         messages.info(request, f'You are editing {product.name}')

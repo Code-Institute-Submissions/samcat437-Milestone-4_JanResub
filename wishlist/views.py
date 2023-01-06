@@ -1,4 +1,6 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404, get_list_or_404
+from django.shortcuts import (
+    render, redirect, reverse, get_object_or_404, get_list_or_404
+)
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from django.contrib import messages
@@ -15,8 +17,10 @@ def wishlist(request):
     wishlist = Wishlist.objects.filter(user=user)
     wishlist_exists = Wishlist.objects.filter(user=user).exists()
     wishlist_owner = wishlist[0]
-    wishlistitems_exist = WishlistItem.objects.filter(wishlist=wishlist_owner).exists()
-  
+    wishlistitems_exist = (
+        WishlistItem.objects.filter(wishlist=wishlist_owner).exists()
+    )
+    
     if wishlist_exists:
         if wishlistitems_exist:
             items = Product.objects.filter(wishlist=wishlist_owner)
@@ -27,7 +31,7 @@ def wishlist(request):
                 'products': items
             }
             return render(request, template, context)
-        else: 
+        else:
             template = 'wishlist/wishlist.html'
             context = {
                 'wishlist_items': items,
@@ -46,13 +50,21 @@ def add_to_wishlist(request, item_id):
 
     product = Product.objects.get(pk=item_id)
     if request.POST:
-        wishlist_exists = WishlistItem.objects.filter(wishlist=wishlist_owner, product=product).exists()
+        wishlist_exists = (
+            WishlistItem.objects.filter(
+                wishlist=wishlist_owner, product=product).exists()
+        )
         if wishlist_exists:
-            messages.error(request, "This product already exists in your wishlist")
+            messages.error(
+                request, "This product already exists in your wishlist"
+            )
             return redirect(redirect_url)
 
         else:
-            new_item = WishlistItem(wishlist=wishlist_owner, product=product, date_added=timezone.now())
+            new_item = WishlistItem(
+                wishlist=wishlist_owner, product=product,
+                date_added=timezone.now()
+            )
             new_item.save()
             messages.success(request, "Product added to your wishlist")
             return redirect(redirect_url)
@@ -65,7 +77,8 @@ def add_to_wishlist(request, item_id):
 
 @login_required
 def delete_wishlist_confirmation(request, item_id):
-    """ Ask the user to confirm deletion of an item from their wishlist via template """
+    """ Ask the user to confirm deletion of an item
+    from their wishlist via template """
 
     product = get_object_or_404(Product, pk=item_id)
     template = 'wishlist/confirmation.html'
@@ -86,8 +99,6 @@ def delete_wishlist(request, item_id):
     item = get_object_or_404(Product, pk=item_id)
     product = WishlistItem.objects.get(product=item)
     products = get_list_or_404(WishlistItem, wishlist=wishlist_owner)
-    product_number = len(products)
-    
     product.delete()
     messages.success(request, 'Item deleted from your wishlist!')
     return redirect(reverse('wishlist'))
