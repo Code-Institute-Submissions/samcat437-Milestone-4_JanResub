@@ -14,7 +14,7 @@ def wishlist(request):
     """ A view to return the wishlist page """
     print('hi')
     user = get_object_or_404(UserProfile, user=request.user)
-    wishlist = Wishlist.objects.filter(user=user)
+    wishlist = Wishlist.objects.get_or_create(user=user)
     wishlist_exists = Wishlist.objects.filter(user=user).exists()
     wishlistitems_exist = (
         WishlistItem.objects.filter(wishlist=wishlist[0]).exists()
@@ -23,7 +23,7 @@ def wishlist(request):
     if wishlist_exists:
         if wishlistitems_exist:
             items = Product.objects.filter(wishlist=wishlist[0])
-
+            
             template = 'wishlist/wishlist.html'
             context = {
                 'wishlist_items': items,
@@ -31,6 +31,7 @@ def wishlist(request):
             }
             return render(request, template, context)
         else:
+            items = False
             template = 'wishlist/wishlist.html'
             context = {
                 'wishlist_items': items,

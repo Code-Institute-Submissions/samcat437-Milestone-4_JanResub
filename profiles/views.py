@@ -31,11 +31,14 @@ def profile(request):
         form = UserProfileForm(instance=profile)
     orders = profile.orders.all()
 
-    wishlist = Wishlist.objects.filter(user=user)
+    wishlist = Wishlist.objects.get_or_create(user=user)
+    print(wishlist)
     wishlist_exists = Wishlist.objects.filter(user=user).exists()
+    print(wishlist_exists)
     wishlistitems_exist = (
         WishlistItem.objects.filter(wishlist=wishlist[0]).exists()
     )
+    print(wishlistitems_exist)
   
     if wishlist_exists:
         if wishlistitems_exist:

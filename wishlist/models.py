@@ -8,7 +8,7 @@ class Wishlist(models.Model):
     A user's list of wished for items
     """
     user = models.ForeignKey(
-        UserProfile, null=False, blank=False, on_delete=models.CASCADE, 
+        UserProfile, null=False, blank=False, on_delete=models.CASCADE,
         related_name='wishlist'
     )
     products = models.ManyToManyField(Product, through='WishlistItem')
