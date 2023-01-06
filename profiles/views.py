@@ -33,14 +33,13 @@ def profile(request):
 
     wishlist = Wishlist.objects.filter(user=user)
     wishlist_exists = Wishlist.objects.filter(user=user).exists()
-    wishlist_owner = wishlist[0]
     wishlistitems_exist = (
-        WishlistItem.objects.filter(wishlist=wishlist_owner).exists()
+        WishlistItem.objects.filter(wishlist=wishlist[0]).exists()
     )
   
     if wishlist_exists:
         if wishlistitems_exist:
-            wishlist_items = Product.objects.filter(wishlist=wishlist_owner)
+            wishlist_items = Product.objects.filter(wishlist=wishlist[0])
 
             template = 'profiles/profile.html'
             context = {
