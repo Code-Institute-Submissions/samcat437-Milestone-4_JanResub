@@ -73,9 +73,9 @@ def product_detail(request, product_id):
 
     product = get_object_or_404(Product, pk=product_id)
     reviews = Reviews.objects.filter(product=product_id)
-    no_reviews = True
 
     if request.user.is_anonymous:
+        no_reviews = True
         if reviews:
             no_reviews = False
     context = {
@@ -108,12 +108,15 @@ def product_detail(request, product_id):
         this_review = reviews.filter(user=user).exists()
 
         no_reviews = True
+        print('hi')
         if reviewed:
+            print('ho')
             no_reviews = False
 
         if this_review:
             orders = False
             no_reviews = False
+            print('he')
             if orders is True:
                 no_reviews = False
 
