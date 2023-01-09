@@ -78,13 +78,13 @@ def product_detail(request, product_id):
         no_reviews = True
         if reviews:
             no_reviews = False
-    context = {
-            'product': product,
-            'no_reviews': no_reviews,
-            'review_items': reviews
-    }
+        context = {
+                'product': product,
+                'no_reviews': no_reviews,
+                'review_items': reviews
+        }
 
-    return render(request, 'products/product_detail.html', context)
+        return render(request, 'products/product_detail.html', context)
 
     if request.user:
         user = get_object_or_404(UserProfile, user=request.user)
@@ -92,13 +92,17 @@ def product_detail(request, product_id):
         orders = Order.objects.filter(user_profile=user).exists()
         # order(s) for that item
         order = OrderLineItem.objects.filter(product=product_id)
+        order_match = False
         
         for user_order in user_orders:
             for o in order:
                 if str(user_order) in str(o):
-                    orders = True
+                    print(f'1{order_match}')
+                    order_match = True
+                    print(f'2{order_match}')
                 else:
-                    orders = False
+                    order_match = False
+                    print(f'3{order_match}')
 
         # reviews for the product of any user
         reviews = Reviews.objects.filter(product=product_id)
@@ -106,22 +110,26 @@ def product_detail(request, product_id):
         reviewed = reviews.filter(product=product_id).exists()
         # if the review for user logged in exists
         this_review = reviews.filter(user=user).exists()
+        review_items_id = False
 
         no_reviews = True
-        print('hi')
         if reviewed:
-            print('ho')
             no_reviews = False
+
+        if no_reviews is True and order_match is True:
+            order_match = True
+        else:
+            order_match = False
 
         if this_review:
-            orders = False
+            order_match = False
             no_reviews = False
-            print('he')
+            print(f'4{order_match}')
+            review_items_id = Reviews.objects.get(user=user)
             if orders is True:
+                print(f'5{order_match}')
+                print(f'no_reviews{no_reviews}')
                 no_reviews = False
-
-        if no_reviews is True:
-            orders = False
 
         if request.method == 'POST':
             new_form = Reviews.objects.filter(user=user)
@@ -147,9 +155,10 @@ def product_detail(request, product_id):
             'form': form,
             'product': product,
             'review_items': reviews,
-            'order_match': orders,
+            'order_match': order_match,
             'already_reviewed': this_review,
-            'no_reviews': no_reviews
+            'no_reviews': no_reviews,
+            'review_items_id': review_items_id
         }
 
         return render(request, 'products/product_detail.html', context)

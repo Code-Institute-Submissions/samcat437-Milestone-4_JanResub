@@ -49,7 +49,7 @@
                 </div>
             </div>
             {% for product in products %}
-            <div class="table-responsive d-none d-md-block">
+            <div class="table-responsive d-none d-md-block no-scroll">
                 <table class="table table-sm table-borderless">
                     <thead class="text-black">
                         <tr>
@@ -74,7 +74,7 @@
                             <td class="py-3">
                                 {% include "wishlist/delete.html" %}
                             </td>
-                            <td class="py-3 w-40">
+                            <td class="py-3 w-40 w-md-25">
                               {% include "wishlist/quantity_form.html" %}
                             </td>
                         </tr>

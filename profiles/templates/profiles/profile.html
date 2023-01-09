@@ -91,137 +91,145 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12">
+            <div class="col">
                 <p><a class="text-muted" href="{% url 'wishlist' %}">My Wishlist</a></p>
-                {% if wishlist_items %}
-                <div class="d-block d-md-none">
-                    {% for item in wishlist_items %}
-                        <div class="row">
-                            <div class="col-12 col-sm-6 mb-2">
-                                {% include "profiles/w_product_image.html" %}
-                            </div>
-                            <div class="col-12 col-sm-6 mb-2">
-                                {% include "profiles/w_product_info.html" %}
-                            </div>
-                            <div class="col-12 col-sm-6">
-                                <p class="my-0">${{ item.price }}</p>
-                            </div>
-                            <div class="col-12 col-sm-6">
-                                {% include "profiles/w_quantity_form.html" %}
-                            </div>
-                        </div>
-                        <div class="row"><div class="col"><hr></div></div>
-                    {% endfor %}
-                </div>
-                {% for product in products %}
-                <div class="table-responsive d-none d-md-block">
-                    <table class="table table-sm table-borderless">
-                        <thead>
-                            <tr>
-                                <th scope="col">Product</th>
-                                <th scope="col"></th>
-                                <th scope="col">Price</th>
-                                <th scope="col"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="p-3 w-25">
-                                    {% include "profiles/w_product_image.html" %}
-                                </td>
-                                <td class="py-3">
-                                    {% include "profiles/w_product_info.html" %}
-                                </td>
-                                <td class="py-3">
-                                    <p class="my-0">${{ product.price }}</p>
-                                </td>
-                                <td class="py-3 w-30">
-                                    {% include "profiles/w_quantity_form.html" %}
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-                {% else %}
-                <div class="col-12">
-                    <p class="my-5 text-muted">You haven't added any items to your wishlist yet.</p>
-                    <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 btn-lg float-right">
-                        <span class="icon">
-                            <i class="fas fa-chevron-left"></i>
-                        </span>
-                        <span class="text-uppercase">Keep Shopping</span>
-                    </a>
-                </div>
-                {% endif %}
             </div>
+            {% if wishlist_items %}
+            <div class="d-block d-md-none">
+                {% for item in wishlist_items %}
+                    <div class="row">
+                        <div class="col-12 col-sm-6 mb-2">
+                            {% include "profiles/w_product_image.html" %}
+                        </div>
+                        <div class="col-12 col-sm-6 mb-2">
+                            {% include "profiles/w_product_info.html" %}
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <p class="my-0">${{ item.price }}</p>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            {% include "profiles/w_delete.html" %}
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            {% include "profiles/w_quantity_form.html" %}
+                        </div>
+                    </div>
+                    <div class="row"><div class="col"><hr></div></div>
+                {% endfor %}
+            </div>
+            <div class="table-responsive rounded d-none d-md-block no-scroll">
+                <table class="table table-sm table-borderless">
+                    <thead>
+                        <tr>
+                            <th scope="col">Product</th>
+                            <th scope="col"></th>
+                            <th scope="col">Price</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    
+                    {% for item in wishlist_items %}
+                        <tr>
+                            <td class="p-3 w-25">
+                                {% include "profiles/w_product_image.html" %}
+                            </td>
+                            <td class="py-3">
+                                {% include "profiles/w_product_info.html" %}
+                            </td>
+                            <td class="py-3">
+                                <p class="my-0">${{ item.price }}</p>
+                            </td>
+                            <td class="py-3">
+                                <p class="my-0">{% include "profiles/w_delete.html" %}</p>
+                            </td>
+                            <td class="py-3 w-30">
+                                {% include "profiles/w_quantity_form.html" %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    
+                </table>
+            </div>
+            {% else %}
+            <div class="col-12">
+                <p class="my-5 text-muted">You haven't added any items to your wishlist yet.</p>
+                <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 btn-lg float-right">
+                    <span class="icon">
+                        <i class="fas fa-chevron-left"></i>
+                    </span>
+                    <span class="text-uppercase">Keep Shopping</span>
+                </a>
+            </div>
+            {% endif %}
         </div>
         <div class="row">
             <div class="col">
                 <p><a class="text-muted" href="{% url 'reviews' %}">My Reviews</a></p>
-                {% if review_items %}
-                <div class="d-block d-md-none">
-                        {% for item in review_items %}
-                        <div class="row">
-                            <div class="col-12 col-sm-6 mb-2">
-                                {% include "profiles/r_product_image.html" %}
-                            </div>
-                            <div class="col-12 col-sm-6 mb-2">
-                                {% include "profiles/r_product_info.html" %}
-                            </div>
-                            <div class="col-12 col-sm-6 mb-2">
-                                <p class="my-0">${{ item.product.price }}</p>
-                            </div>
-                            <div class="col-12 mb-2">
-                                {% include "profiles/r_review_content.html" %}
-                            </div>
-                            <div class="col-12 mb-2">
-                                {% include "profiles/r_edit_and_delete.html" %}
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-                <div class="table-responsive rounded d-none d-md-block">
-                    <table class="table table-sm table-borderless">
-                        <thead class="text-black">
-                            <tr>
-                                <th scope="col">Product</th>
-                                <th scope="col"></th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Review</th>
-                                <th scope="col"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for item in review_items %}
-                            <tr>
-                                <td class="p-3 w-25">
-                                    {% include "profiles/r_product_image.html" %}
-                                </td>
-                                <td>
-                                    {% include "profiles/r_product_info.html" %}
-                                </td>
-                                <td>
-                                    <p class="my-0">${{ item.product.price }}</p>
-                                </td>
-                                <td>
-                                    {% include "profiles/r_review_content.html" %}
-                                </td>
-                                <td>
-                                    {% include "profiles/r_edit_and_delete.html" %}
-                                </td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-                {% else %}
-                <div class="col-12">
-                    <p class="my-5 text-muted">You haven't reviewed any items yet.</p>
-                </div>
-            {% endif %}
             </div>
+            {% if review_items %}
+            <div class="d-block d-md-none">
+                    {% for item in review_items %}
+                    <div class="row">
+                        <div class="col-12 col-sm-6 mb-2">
+                            {% include "profiles/r_product_image.html" %}
+                        </div>
+                        <div class="col-12 col-sm-6 mb-2">
+                            {% include "profiles/r_product_info.html" %}
+                        </div>
+                        <div class="col-12 col-sm-6 mb-2">
+                            <p class="my-0">${{ item.product.price }}</p>
+                        </div>
+                        <div class="col-12 mb-2">
+                            {% include "profiles/r_review_content.html" %}
+                        </div>
+                        <div class="col-12 mb-2">
+                            {% include "profiles/r_edit_and_delete.html" %}
+                        </div>
+                    </div>
+                    {% endfor %}
+            </div>
+            <div class="table-responsive rounded d-none d-md-block">
+                <table class="table table-sm table-borderless">
+                    <thead class="text-black">
+                        <tr>
+                            <th scope="col">Product</th>
+                            <th scope="col"></th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Review</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in review_items %}
+                        <tr>
+                            <td class="p-3 w-25">
+                                {% include "profiles/r_product_image.html" %}
+                            </td>
+                            <td>
+                                {% include "profiles/r_product_info.html" %}
+                            </td>
+                            <td>
+                                <p class="my-0">${{ item.product.price }}</p>
+                            </td>
+                            <td>
+                                {% include "profiles/r_review_content.html" %}
+                            </td>
+                            <td>
+                                {% include "profiles/r_edit_and_delete.html" %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="col-12">
+                <p class="my-5 text-muted">You haven't reviewed any items yet.</p>
+            </div>
+        {% endif %}
         </div>
+    </div>
 {% endblock %}
 
 {% block postloadjs %}

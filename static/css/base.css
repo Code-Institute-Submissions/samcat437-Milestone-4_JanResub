@@ -16,6 +16,11 @@ body {
     border: 1px solid!important;
 }
 
+.no-scroll {
+    overflow-x: hidden;
+}
+
+
 /* not working */
 .navbar-nav .nav-link .list-inline-item nav li a {
     background-color: red;
