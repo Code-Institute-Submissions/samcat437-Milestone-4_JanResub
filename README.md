@@ -243,13 +243,13 @@ I had some problems with my wishlist views accessing correct variables and urls.
 
 ### Remaining Bugs
 
-The rating is still hard coded into the fixtures and the review form doesn't ask for the user to input a value. Removing this from the fixtures looked like it would cause issues, and I was improving and adding quite a few features for resubmission, so I didn't change this. Further logic regarding calculating the average rating would need to be added and would be a future feature.
+The rating is still hard coded into the fixtures and the review form doesn't ask for the user to input a value. Removing this from the fixtures looked like it would cause issues, and I was improving and adding quite a few features for resubmission, so I didn't change this. Further logic regarding calculating the average rating would need to be added and would be a future feature. On mobile and tablet the top nav (search, bag and account) buttons are default blue rather than purple as on desktop. 
 
 ### Future Features
 
 Besides the rating, I would like to add javascript to the button so that it turns pink when selected.
 
-I would like to add the ability to add a photo of the guitar after they bought it to the review. 
+I would like the user to be able to add the ability to add a photo of the guitar after they bought it to the review. 
 
 I would like users to be able to create a thread on a review discussing the product a bit further.
 
@@ -277,9 +277,50 @@ The built-in linting feature in gitpod allowed me to fix the python errors in my
 
 ## Manual Testing 
 
-Manual tests were conducted throughout the development process. The site was tested on Windows PC and Mac, Ipad and iPhone XR.
+Manual tests were conducted throughout the development process. The site was tested on Windows PC and Mac, iPad and iPhone XR.
 
+### Wishlist
 
+Wishlist displays multiple products at once and is responsive. 
+
+Mobile -
+PC - 
+
+### Reviews 
+
+Reviews page displays multiple products at once and is responsive.
+
+Mobile -
+PC - 
+
+### Profile
+
+Profile page displays multiple products in wishlist and reviews at once and is responsive.
+
+Mobile -
+PC - 
+
+### Product Page 
+
+Product filters appropriately with nav bar and is responsive. 
+
+Mobile -
+PC - 
+
+### Product Detail Page
+
+1. Display reviews by other users if not logged in. 
+2. Display no reviews if no reviews exist and user not ordered product. 
+3. Display reviews by other users and logged in user if it exists.
+4. Display reviews by other users and review form if user ordered product.
+5. Display no reviews if no reviews exist and review form is user ordered product. 
+
+### Bag
+
+Bag displays appropriate products and prices. 
+
+Mobile- 
+PC- 
 
 ## Deployment 
 
