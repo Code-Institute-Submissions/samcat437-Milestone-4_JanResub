@@ -88,14 +88,14 @@
                                                     <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
                                                 </small>
                                             {% endif %}
-                                            <small class="ml-3">
-                                                <form class="form" action="{% url 'add_to_wishlist' product.id %}" method="POST">
-                                                    {% csrf_token %}
+                                            <form class="form" action="{% url 'add_to_wishlist' product.id %}" method="POST">
+                                                {% csrf_token %}
+                                                <small>
                                                     <span class="icon"><i class="fa-regular fa-heart"></i></span>
                                                     <input type="submit" class="btn-wishlist" value="Add to Wishlist" data-item_id="{{ product.id }}" id="{{ product.id }}">
                                                     <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                                                </form>
-                                            </small>
+                                                </small>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

@@ -17,8 +17,6 @@ def wishlist(request):
     wishlist = Wishlist.objects.get_or_create(user=user)
     products = Wishlist.objects.filter(pk=1)
 
-    wishlist_item = WishlistItem.objects.filter(pk=1)
-
     wishlist_exists = Wishlist.objects.filter(user=user).exists()
     wishlistitems_exist = (
         WishlistItem.objects.filter(wishlist=wishlist[0]).exists()
