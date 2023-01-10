@@ -97,12 +97,9 @@ def product_detail(request, product_id):
         for user_order in user_orders:
             for o in order:
                 if str(user_order) in str(o):
-                    print(f'1{order_match}')
                     order_match = True
-                    print(f'2{order_match}')
                 else:
                     order_match = False
-                    print(f'3{order_match}')
 
         # reviews for the product of any user
         reviews = Reviews.objects.filter(product=product_id)
@@ -124,11 +121,10 @@ def product_detail(request, product_id):
         if this_review:
             order_match = False
             no_reviews = False
-            print(f'4{order_match}')
-            review_items_id = Reviews.objects.get(user=user)
+            review_items_id = Reviews.objects.get(
+                user=user, product=product_id
+            )
             if orders is True:
-                print(f'5{order_match}')
-                print(f'no_reviews{no_reviews}')
                 no_reviews = False
 
         if request.method == 'POST':

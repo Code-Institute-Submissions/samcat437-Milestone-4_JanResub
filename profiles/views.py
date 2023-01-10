@@ -32,9 +32,6 @@ def profile(request):
     orders = profile.orders.all()
 
     wishlist = Wishlist.objects.get_or_create(user=user)
-    print(wishlist)
-    
-    wishlist_item = WishlistItem.objects.filter(pk=1)
 
     wishlist_exists = Wishlist.objects.filter(user=user).exists()
     wishlistitems_exist = (
@@ -44,7 +41,6 @@ def profile(request):
     if wishlist_exists:
         if wishlistitems_exist:
             wishlist_items = Product.objects.filter(wishlist=wishlist[0])
-
             template = 'profiles/profile.html'
             context = {
                 'form': form,

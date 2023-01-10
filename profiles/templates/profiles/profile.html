@@ -73,9 +73,11 @@
                                     </td>
                                     {% endfor %}
                                 </tr>
+                                <hr>
                             {% endfor %}
                         </tbody>
                     </table>
+                    <hr>
                 </div>
                 {% else %}
                 <div>
@@ -96,7 +98,7 @@
             </div>
             {% if wishlist_items %}
             <div class="d-block d-md-none">
-                {% for item in wishlist_items %}
+                {% for product in products %}
                     <div class="row">
                         <div class="col-12 col-sm-6 mb-2">
                             {% include "profiles/w_product_image.html" %}
@@ -104,22 +106,21 @@
                         <div class="col-12 col-sm-6 mb-2">
                             {% include "profiles/w_product_info.html" %}
                         </div>
-                        <div class="col-12 col-sm-6">
-                            <p class="my-0">${{ item.price }}</p>
+                        <div class="col-12 col-sm-6 mb-2">
+                            <p class="my-0">${{ product.price }}</p>
                         </div>
-                        <div class="col-12 col-sm-6">
-                            {% include "profiles/w_delete.html" %}
+                        <div class="col-12 mb-2">
+                            {{% include "profiles/w_delete.html" %}
                         </div>
-                        <div class="col-12 col-sm-6">
+                        <div class="col-12 mb-2">
                             {% include "profiles/w_quantity_form.html" %}
                         </div>
                     </div>
-                    <div class="row"><div class="col"><hr></div></div>
-                {% endfor %}
+                    {% endfor %}
             </div>
-            <div class="table-responsive rounded d-none d-md-block no-scroll">
+            <div class="table-responsive rounded d-none d-md-block">
                 <table class="table table-sm table-borderless">
-                    <thead>
+                    <thead class="text-black">
                         <tr>
                             <th scope="col">Product</th>
                             <th scope="col"></th>
@@ -128,27 +129,27 @@
                             <th scope="col"></th>
                         </tr>
                     </thead>
-                    
-                    {% for item in wishlist_items %}
+                    <tbody>
+                        {% for product in products %}
                         <tr>
                             <td class="p-3 w-25">
                                 {% include "profiles/w_product_image.html" %}
                             </td>
-                            <td class="py-3">
+                            <td class="p-3">
                                 {% include "profiles/w_product_info.html" %}
                             </td>
-                            <td class="py-3">
-                                <p class="my-0">${{ item.price }}</p>
+                            <td class="p-3">
+                                <p class="my-0">${{ product.price }}</p>
                             </td>
                             <td class="py-3">
-                                <p class="my-0">{% include "profiles/w_delete.html" %}</p>
+                                {% include "profiles/w_delete.html" %}
                             </td>
-                            <td class="py-3 w-30">
+                            <td class="py-3 w-40 w-md-25">
                                 {% include "profiles/w_quantity_form.html" %}
                             </td>
                         </tr>
                     {% endfor %}
-                    
+                    </tbody>
                 </table>
             </div>
             {% else %}
@@ -161,7 +162,7 @@
                     <span class="text-uppercase">Keep Shopping</span>
                 </a>
             </div>
-            {% endif %}
+        {% endif %}
         </div>
         <div class="row">
             <div class="col">
