@@ -224,6 +224,10 @@ They are as follows:
 
 [Chrome Dev Tools](https://developer.chrome.com/docs/devtools/) : Chrome Dev tools were utilised for the Javascript console as well as to verify the site's responsiveness and visual presentation. 
 
+## Data Schema
+
+I tried to reuse code across the site as much as possible, and make navigating between the wishlist, profile, reviews and the product detail pages as intuitive as possible. However, after a user makes a review, they are redirected to their review page rather than the product detail page. However, I wasn't able to pass in the product id needed to reload the product detail page which is why they are redirected to their page. This is something I would like to change for the next production.
+
 ## Bugs
 
 ### Fixed Bugs
@@ -244,6 +248,8 @@ I had some problems with my wishlist views accessing correct variables and urls.
 ### Remaining Bugs
 
 The rating is still hard coded into the fixtures and the review form doesn't ask for the user to input a value. Removing this from the fixtures looked like it would cause issues, and I was improving and adding quite a few features for resubmission, so I didn't change this. Further logic regarding calculating the average rating would need to be added and would be a future feature. On mobile and tablet the top nav (search, bag and account) buttons are default blue rather than purple as on desktop. 
+
+My mentor also advised that the way that I do the product detail page wouldn't be the best choice for large scale projects, but is alright for this project. It queries every order ever made which would make the application very slow. I would look for an alernative future solution. 
 
 ### Future Features
 
@@ -289,20 +295,19 @@ Desktop screenshots can be found in media/test_screen_shots/bag-desktop folder.
 
 Wishlist displays multiple products at once and is responsive. 
 
-- 
+- Desktop screenshots can be found in the media/test_screen_shots/wishlist folder. The input buttons were corrected following this screenshot.
 
 ### Reviews 
 
 Reviews page displays multiple products at once and is responsive.
 
-
-- 
+- Desktop screenshots can be found in the media/test_screen_shots/reviews folder.
 
 ### Profile
 
 Profile page displays multiple products in wishlist and reviews at once and is responsive.
 
-- 
+- Desktop screenshots can be found in the media/test_screen_shots/profile folder.
 
 ### Product Page 
 
@@ -313,11 +318,15 @@ Desktop screenshots can be found in the media/test_screen_shots/searching and th
 ### Product Detail Page
 
 1. Display reviews by other users if not logged in.
+    - media/product-detail/review-user-not-logged-in.png
 2. Display no reviews if no reviews exist and user not ordered product. 
     - media/reviews/no-review.png
 3. Display reviews by other users and logged in user if it exists.
+    - media/product-detail/review-logged-in.png
 4. Display reviews by other users and review form if user ordered product.
+    - media/product-detail/review-user-ordered.png
 5. Display no reviews if no reviews exist and review form is user ordered product. 
+    - media/product-detail/no-review-ordered.png
 
 ### Bag and Checkout
 
