@@ -279,48 +279,55 @@ The built-in linting feature in gitpod allowed me to fix the python errors in my
 
 Manual tests were conducted throughout the development process. The site was tested on Windows PC and Mac, iPad and iPhone XR.
 
+### Login and Registration
+
+Mobile screenshots can be found in media/test_screen_shots/71-bass-checkout-mobile and media/test_screen_shots/73-tele-order-mobile folders. 
+
+Desktop screenshots can be found in media/test_screen_shots/bag-desktop folder.
+
 ### Wishlist
 
 Wishlist displays multiple products at once and is responsive. 
 
-Mobile -
-PC - 
+- 
 
 ### Reviews 
 
 Reviews page displays multiple products at once and is responsive.
 
-Mobile -
-PC - 
+
+- 
 
 ### Profile
 
 Profile page displays multiple products in wishlist and reviews at once and is responsive.
 
-Mobile -
-PC - 
+- 
 
 ### Product Page 
 
 Product filters appropriately with nav bar and is responsive. 
 
-Mobile -
-PC - 
+Desktop screenshots can be found in the media/test_screen_shots/searching and the media/test_screen_shots/products folder.
 
 ### Product Detail Page
 
-1. Display reviews by other users if not logged in. 
+1. Display reviews by other users if not logged in.
 2. Display no reviews if no reviews exist and user not ordered product. 
+    - media/reviews/no-review.png
 3. Display reviews by other users and logged in user if it exists.
 4. Display reviews by other users and review form if user ordered product.
 5. Display no reviews if no reviews exist and review form is user ordered product. 
 
-### Bag
+### Bag and Checkout
 
 Bag displays appropriate products and prices. 
 
-Mobile- 
-PC- 
+Mobile screenshots can be found in media/test_screen_shots/71-bass-checkout-mobile and media/test_screen_shots/73-tele-order-mobile folders. 
+
+Desktop screenshots can be found in media/test_screen_shots/bag-desktop folder.
+
+Order confirmation email can be found in media/test_screen_shots/order-confirmation folder.
 
 ## Deployment 
 
