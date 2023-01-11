@@ -1,4 +1,4 @@
-# Vintage Sound Ecommerce Application
+# Vintage Sound E-commerce Application
 
 This application will user's to browse products, login and create a profile, add and delete them to their wishlist, shopping bag, checkout with Stripe, receive an email confirmation, write a review of the product and log out. Admin users are able to add, update and delete items on the website.
 
@@ -120,7 +120,7 @@ password: samcat437
 
 ### Purchasing and Checkout
 
-1. Shoppers can view their bag at any time by clicking the bag icon in the nav bar. This is totalled so they can see their total. 
+1. Shoppers can view their bag at any time by clicking the bag icon in the nav bar. This is totaled so they can see their total. 
 2. In the bag, they can remove items. 
 3. On the checkout page, the user is able to fill out their payment information through Stripe.
 4. After checkout, the order information is saved to the user's profile. 
@@ -154,7 +154,7 @@ password: samcat437
 ### My Wishlist
 
 1. When a user clicks on a product, they will be able to click on the "add to wishlist" option.  
-2. They will receive a notification that they item has been added to their wishlist, or that the item is already in the wishlist. 
+2. They will receive a notification that their item has been added to their wishlist, or that the item is already in the wishlist. 
 3. They can then click on "My Wishlist" in the navigation menu.
 4. Once navigating to their Wishlist, a user can view and delete the Wishlist as appropriate after confirmation.
 
@@ -226,7 +226,9 @@ They are as follows:
 
 ## Data Schema
 
-I tried to reuse code across the site as much as possible, and make navigating between the wishlist, profile, reviews and the product detail pages as intuitive as possible. However, after a user makes a review, they are redirected to their review page rather than the product detail page. However, I wasn't able to pass in the product id needed to reload the product detail page which is why they are redirected to their page. This is something I would like to change for the next production.
+I tried to reuse code across the site as much as possible, and make navigating between the wishlist, profile, reviews and the product detail pages as intuitive as possible. In terms of flow, however, after a user makes a review, they are redirected to their review page rather than the product detail page. However, I wasn't able to pass in the product id needed to reload the product detail page which is why they are redirected to their page. This is something I would like to change for the next production.
+
+You may see the model database relationship diagram in the media/draw-sql folder.
 
 ## Bugs
 
@@ -234,22 +236,24 @@ I tried to reuse code across the site as much as possible, and make navigating b
 
 During development, I had trouble with my wishlist model. For submission, I have gone back to my original Many to Many model. I was able to connect the two models by using a boolean to determine whether wishlist items in the Wishlist_Items model existed connected to the Wishlist.
 
-I also had trouble during refactoring the wishlist list code for responsiveness with jinja. The code was looping several times and creating on repetitions on the tables. I figured out that in the include templates I had added a for loop that was causing these repetions. 
+I also had trouble during refactoring the wishlist list code for responsiveness with jinja. The code was looping several times and creating on repetitions on the tables. I figured out that in the include templates I had added a for loop that was causing these repetitions. 
 
 I had trouble with the product detail view as there is so much functionality built into it. Perhaps it is a bit complicated and could be writen more elegantly. This was a bit tricky as there was only the product_id passed into the url. There are many conditions to check for such as : 
     1. If the user has an order of that product but not reviewed it yet, show the add review form. 
     2. If the user has a review, don't show the form but show the edit and delete buttons on their review.
     3. Check that the item has been reviewed and if so, display the reviews. 
 
-I had an issue with the S3 bucket loading images. It ended up having added another file extension of ".JPG" onto my images that alrady had ".jpg" there. It took trial and error and reading of documentation to see that the bucket preferes lower case ".jpg". Changing it to this solved the issue. 
+I had an issue with the S3 bucket loading images. It ended up having added another file extension of ".JPG" onto my images that alrady had ".jpg" there. It took trial and error and reading of documentation to see that the bucket prefers lower case ".jpg". Changing it to this solved the issue. 
 
 I had some problems with my wishlist views accessing correct variables and urls. I was getting an 404 error that the path could not be found. It turned out that I needed an ending slash on my wishlist/urls.py path. 
 
 ### Remaining Bugs
 
-The rating is still hard coded into the fixtures and the review form doesn't ask for the user to input a value. Removing this from the fixtures looked like it would cause issues, and I was improving and adding quite a few features for resubmission, so I didn't change this. Further logic regarding calculating the average rating would need to be added and would be a future feature. On mobile and tablet the top nav (search, bag and account) buttons are default blue rather than purple as on desktop. 
+The rating is still hard coded into the fixtures and the review form doesn't ask for the user to input a value. Removing this from the fixtures looked like it would cause issues, and I was improving and adding quite a few features for re-submission, so I didn't change this. Further logic regarding calculating the average rating would need to be added and would be a future feature. On mobile and tablet the top nav (search, bag and account) buttons are default blue rather than purple as on desktop. 
 
-My mentor also advised that the way that I do the product detail page wouldn't be the best choice for large scale projects, but is alright for this project. It queries every order ever made which would make the application very slow. I would look for an alernative future solution. 
+During testing, The 1960s Hagstrom Acoustic was ordered but doesn't show the order form and I can not find any explanation of this bug. It is working for other products, however. 
+
+My mentor also advised that the way that I do the product detail page wouldn't be the best choice for large scale projects, but is alright for this project. It queries every order ever made which would make the application very slow. I would look for an alternative future solution. 
 
 ### Future Features
 
@@ -283,7 +287,7 @@ The built-in linting feature in gitpod allowed me to fix the python errors in my
 
 ## Manual Testing 
 
-Manual tests were conducted throughout the development process. The site was tested on Windows PC and Mac, iPad and iPhone XR.
+Manual tests were conducted throughout the development process. The site was tested on Windows PC and Mac, iPad and iPhone XR, on Safari and Chrome.
 
 ### Login and Registration
 
@@ -295,7 +299,7 @@ Desktop screenshots can be found in media/test_screen_shots/bag-desktop folder.
 
 Wishlist displays multiple products at once and is responsive. 
 
-- Desktop screenshots can be found in the media/test_screen_shots/wishlist folder. The input buttons were corrected following this screenshot.
+- Desktop screenshots can be found in the media/test_screen_shots/wishlist folder. The input buttons UI were corrected following this screenshot.
 
 ### Reviews 
 
